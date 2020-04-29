@@ -1,7 +1,6 @@
 package org.hummer.cluster.utils;
 
 import com.alibaba.fastjson.JSON;
-import com..doraemon.common.util.CollectionUtils;
 
 import java.net.InetAddress;
 import java.net.InterfaceAddress;

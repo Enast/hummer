@@ -1,7 +1,6 @@
 package org.hummer.task.aop.impl;
 
 import org.hummer.task.aop.DistributedJoLock;
-import log.HikLog;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -33,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  **/
 @Aspect
 @Component
-@ConditionalOnProperty(name = "nms.redisson.use", havingValue = "true")
+@ConditionalOnProperty(name = "hummer.redisson.use", havingValue = "true")
 public class DistributedJobLockAspect {
 
     private final Logger log = LoggerFactory.getLogger(DistributedJobLockAspect.class);
@@ -41,7 +40,7 @@ public class DistributedJobLockAspect {
     @Resource
     RedissonClient redissonClient;
 
-    @Pointcut("@annotation(com...task.aop.DistributedJoLock)")
+    @Pointcut("@annotation(org.hummer.task.aop.DistributedJoLock)")
     public void point() {
     }
 
@@ -67,7 +66,7 @@ public class DistributedJobLockAspect {
         // 获取Scheduled注解的定时任务时间周期
         try {
             if (StringUtils.isBlank(cron)) {
-                log.info("DistributedJobLockAspect cron is null", "jobKey")), jobKey);
+                log.info("DistributedJobLockAspect cron is null", "jobKey", jobKey);
                 long fixedRate = scheduledAnnotation.fixedRate() == -1 ? (StringUtils.isBlank(scheduledAnnotation.fixedRateString()) ? -1 : Long.parseLong(scheduledAnnotation.fixedRateString())) : scheduledAnnotation.fixedRate();
                 long fixedDelay = scheduledAnnotation.fixedDelay() == -1 ? (StringUtils.isBlank(scheduledAnnotation.fixedDelayString()) ? -1 : Long.parseLong(scheduledAnnotation.fixedDelayString())) : scheduledAnnotation.fixedDelay();
                 // 时间间隔为,周期频率时间和延时时间总和
@@ -83,21 +82,21 @@ public class DistributedJobLockAspect {
                     } else {
                         leaseTime = date.getTime() - currentTimeMillis;
                     }
-                    log.info("DistributedJobLockAspect nextFireTime", "jobKey", "date")), jobKey, date);
+                    log.info("DistributedJobLockAspect nextFireTime", "jobKey", "date", jobKey, date);
                 } catch (ParseException e) {
-                    log.error(""), e);
+                    log.error("", e);
                 }
             }
         } catch (Exception e) {
-            log.error(""), e);
+            log.error("", e);
         }
         // 未设置任务周期间隔,不执行该定时任务
         if (leaseTime == 0) {
-            log.info("DistributedJobLockAspect leaseTime is null", "jobKey")), jobKey);
+            log.info("DistributedJobLockAspect leaseTime is null", "jobKey", jobKey);
             // 执行任务,不影响任务执行
             pjp.proceed();
         } else {
-            log.info("leaseTime is", "jobKey", "leaseTime")), jobKey, leaseTime);
+            log.info("leaseTime is", "jobKey", "leaseTime", jobKey, leaseTime);
             RLock lock = redissonClient.getLock("DISTRIBUTED_JOB_" + jobAnnotation.lockKeyPre() + "_" + jobKey);
             lock.lock(leaseTime, TimeUnit.MILLISECONDS);
             try {

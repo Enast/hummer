@@ -32,7 +32,7 @@ public class DistributeLockAspect {
     ConsulClient consulClient;
 
 
-    @Pointcut("@annotation(com...cluster.aop.DistributeLock)")
+    @Pointcut("@annotation(org.hummer.cluster.aop.DistributeLock)")
     private void pcMethod() {
 
     }
@@ -51,10 +51,10 @@ public class DistributeLockAspect {
             }
             Boolean result = lock.lock(distributeLock.block());
             if (result) {
-                logger.info("get the lock"));
+                logger.info("get the lock");
                 return pjp.proceed();
             }
-            logger.info("finished exe"));
+            logger.info("finished exe");
         } finally {
             if (lock != null) {
                 lock.unlock();

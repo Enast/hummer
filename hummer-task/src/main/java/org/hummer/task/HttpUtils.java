@@ -1,7 +1,5 @@
 package org.hummer.task;
 
-import org.hummer.task.common.TaskBicUtils;
-import log.HikLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -61,7 +59,7 @@ public class HttpUtils {
         HttpHeaders hh = new HttpHeaders();
         hh.setAcceptLanguageAsLocales(Arrays.asList(Locale.CHINESE, Locale.CHINA));
         //加入bic校验头
-        hh.set("Token", TaskBicUtils.generateToken(null));
+//        hh.set("Token", TaskBicUtils.generateToken(null));
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (requestAttributes != null) {
             HttpServletRequest request = requestAttributes.getRequest();
@@ -70,7 +68,7 @@ public class HttpUtils {
                 String cookie = request.getHeader(HttpHeaders.COOKIE);
                 if (cookie != null) {
                     hh.set(HttpHeaders.COOKIE, cookie);
-                    log.info("Set cookie:" + cookie));
+                    log.info("Set cookie:" + cookie);
                 }
             }
         }

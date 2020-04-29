@@ -3,36 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>hummer-alarm</artifactId>
         <groupId>org.hummer</groupId>
+        <artifactId>hummer-stream</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.hummer</groupId>
-    <artifactId>alarm-core</artifactId>
-
     <packaging>jar</packaging>
-    <name>hummer-alarm-core</name>
+    <artifactId>stream-flink</artifactId>
+    <name>stream-flink</name>
     <version>${project.parent.version}</version>
     <url>http://maven.apache.org</url>
 
     <dependencies>
         <dependency>
             <groupId>org.hummer</groupId>
-            <artifactId>hummer-common</artifactId>
+            <artifactId>stream-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <!--只在编译和测试时使用-->
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
-
-    <build>
-        <finalName>hummer-alarm-core</finalName>
-    </build>
-
 </project>

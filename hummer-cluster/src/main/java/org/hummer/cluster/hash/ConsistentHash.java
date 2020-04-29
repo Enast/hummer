@@ -1,7 +1,5 @@
 package org.hummer.cluster.hash;
 
-
-import log.HikLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,7 +61,7 @@ public abstract class ConsistentHash<H, S> {
             for (int i = 0; i < virtualNodesCount; i++) {
                 String virtualNodeName = s.toString() + "&&VN" + String.valueOf(i);
                 int hash = getHash(virtualNodeName);
-                log.info("virtualNode[" + virtualNodeName + "]add, hash:" + hash));
+                log.info("virtualNode[" + virtualNodeName + "]add, hash:" + hash);
                 S oldS = virtualNodes.get(hash);
                 // 判断是否hash冲突
                 if (oldS != null && !oldS.equals(s)) {
@@ -188,7 +186,7 @@ public abstract class ConsistentHash<H, S> {
             }
             virtualNodes.put(hash, s);
         }
-        log.info("addServer s:" + s.toString()));
+        log.info("addServer s:" + s.toString());
         return s;
     }
 
@@ -211,7 +209,7 @@ public abstract class ConsistentHash<H, S> {
                 it.remove();
             }
         }
-        log.info("deleteServer s:" + s.toString()));
+        log.info("deleteServer s:" + s.toString());
         return true;
     }
 

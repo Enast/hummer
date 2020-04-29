@@ -2,7 +2,6 @@ package org.hummer.dynamodel.db;
 
 import org.hummer.dynamodel.conmon.PageParam;
 import org.hummer.dynamodel.db.dao.DtbCommonDao;
-import com..doraemon.dynamodel.db.filed.*;
 import org.hummer.dynamodel.db.filed.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;

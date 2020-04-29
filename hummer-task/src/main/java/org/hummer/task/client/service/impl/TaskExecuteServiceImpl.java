@@ -7,7 +7,6 @@ import org.hummer.task.client.remotecall.vo.UnifyTaskRegister;
 import org.hummer.task.client.service.TaskExecuteService;
 import org.hummer.task.vo.TaskAjaxResult;
 import org.hummer.task.vo.UnifyTaskBean;
-import log.HikLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -42,10 +41,10 @@ public class TaskExecuteServiceImpl implements TaskExecuteService {
     public Boolean startTask(String taskName) {
         UnifyTaskBean taskBean = TaskClientInitService.taskBeanMap.get(taskName);
         if (taskBean == null) {
-            log.info("taskBean is null"));
+            log.info("taskBean is null");
             return false;
         }
-        log.info("start task :{}" + taskName));
+        log.info("start task :{}" + taskName);
         new Thread(() -> {
             ReflectionUtils.invokeMethod(taskBean.getMethod(), taskBean.getBean());
         }).start();
@@ -54,11 +53,11 @@ public class TaskExecuteServiceImpl implements TaskExecuteService {
 
     @Override
     public void tasksRegister(List<UnifyTaskRegister> registers) {
-        log.info("register task", "size")), registers == null ? "0" : registers.size());
+        log.info("register task", "size", registers == null ? "0" : registers.size());
         if (CollectionUtils.isEmpty(registers)) {
             return;
         }
         TaskAjaxResult<Boolean> result = clientUnifyTaskService.tasksRegister(registers);
-        log.info("tasksRegister", "json")), JSON.toJSONString(result));
+        log.info("tasksRegister", "json", JSON.toJSONString(result));
     }
 }

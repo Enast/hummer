@@ -6,9 +6,7 @@ import org.hummer.task.aop.UnifyTask;
 import org.hummer.task.client.remotecall.vo.UnifyTaskRegister;
 import org.hummer.task.client.service.TaskExecuteService;
 import org.hummer.task.vo.UnifyTaskBean;
-import log.HikLog;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.support.AopUtils;
@@ -87,7 +85,7 @@ public class TaskClientInitService implements CommandLineRunner {
                     registers.add(register);
                 }
             }
-            log.info("taskBeanMap size ", "size")), taskBeanMap.size());
+            log.info("taskBeanMap size ", "size", taskBeanMap.size());
             new Thread(() -> {
                 taskExecuteService.tasksRegister(registers);
             }).start();
@@ -101,17 +99,17 @@ public class TaskClientInitService implements CommandLineRunner {
         }
         cron = cron.trim();
         if (cron.startsWith("${") && cron.endsWith("}")) {
-            log.info("use express"));
+            log.info("use express");
             cron = cron.replace("${", "").replace("}", "");
             String[] strArr = cron.split(":");
             result = context.getEnvironment().getProperty(strArr[0]);
             if (StringUtils.isBlank(result) && strArr.length > 1) {
                 result = strArr[1];
             } else {
-                log.info("", "result", "strArr ")), result, strArr.length);
+                log.info("", "result", "strArr ", result, strArr.length);
             }
         } else {
-            log.info("not use express"));
+            log.info("not use express");
         }
         return result;
     }

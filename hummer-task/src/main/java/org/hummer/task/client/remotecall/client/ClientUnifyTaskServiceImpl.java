@@ -8,12 +8,12 @@ import org.hummer.task.HttpUtils;
 import org.hummer.task.client.remotecall.service.ClientUnifyTaskService;
 import org.hummer.task.client.remotecall.vo.UnifyTaskRegister;
 import org.hummer.task.client.remotecall.vo.UnifyTaskUpdate;
-import com..doraemon.common.util.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;

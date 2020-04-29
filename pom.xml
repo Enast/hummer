@@ -21,7 +21,7 @@
         <module>hummer-cluster</module>
         <module>hummer-config</module>
         <module>hummer-dynamodel</module>
-        <module>hummer-alarm</module>
+        <module>hummer-stream</module>
     </modules>
 
     <properties>

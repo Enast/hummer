@@ -40,7 +40,7 @@ public class ConsulElectServiceImpl implements ConsulElectService {
     @Value("${cluster.elect.blockQuery.waitTime:30}")
     private Integer waitTime;
 
-    private static String CLUSTER_REDIS_KEY = "omcmdb:cmdb:cluster:info";
+    private static String CLUSTER_REDIS_KEY = "hummer:cluster:info";
     @Resource
     ConsulClient consulClient;
     @Resource
@@ -58,19 +58,19 @@ public class ConsulElectServiceImpl implements ConsulElectService {
             }
             consulLock = new ConsulLock(consulClient, sessionTTL, electName, nodeId);
         }
-        logger.info("start first leader election"));
+        logger.info("start first leader election");
         // 先选举一次
         ElectResponse electResponse = elect();
         // 主节点相关业务启动和非主节点相关业务停止
         masterService.businessSwitch(electResponse, nodeId);
-        logger.info("", "result", "manager")), electResponse.getElectResult(), electResponse.getLeaderId());
+        logger.info("", "result", "manager", electResponse.getElectResult(), electResponse.getLeaderId());
         //创建一个可重用的固定线程池数的线程池
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("ConsulElect-pool-%d").build();
         ExecutorService executorService = new ThreadPoolExecutor(1, 1, 180, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), namedThreadFactory);
         executorService.execute(() -> {
             watch(electResponse);
         });
-        logger.info("finished first leader election"));
+        logger.info("finished first leader election");
     }
 
     /**
@@ -81,20 +81,20 @@ public class ConsulElectServiceImpl implements ConsulElectService {
      */
     @Override
     public void watch(ElectResponse electResponse) {
-        logger.info("watch leader election"));
+        logger.info("watch leader election");
         long waitIndex = electResponse.getModifyIndex() + 1;
         do {
             try {
-                logger.info("start leader watch query", "waitTime", "waitIndex")), waitTime, waitIndex);
+                logger.info("start leader watch query", "waitTime", "waitIndex", waitTime, waitIndex);
                 // 阻塞查询,监听kv状态,及时响应变更
                 GetValue kv = consulLock.getKVValue(waitTime, waitIndex);
                 // kv被删除或者kv绑定的session不存在
                 if (null == kv || StringUtils.isBlank(kv.getSession())) {
-                    logger.info("leader missing, start election right away"));
+                    logger.info("leader missing, start election right away");
                     electResponse = elect();
                     masterService.businessSwitch(electResponse, nodeId);
                     waitIndex = electResponse.getModifyIndex() + 1;
-                    logger.info("elect result, current manager", "result", "manager")), electResponse.getElectResult(), electResponse.getLeaderId());
+                    logger.info("elect result, current manager", "result", "manager", electResponse.getElectResult(), electResponse.getLeaderId());
                 } else {
                     long kvModifyIndex = kv.getModifyIndex();
                     waitIndex = kvModifyIndex++;
@@ -108,11 +108,11 @@ public class ConsulElectServiceImpl implements ConsulElectService {
                     masterService.businessSwitch(electResponse, nodeId);
                 }
             } catch (Exception ex) {
-                logger.error("leader watch error"), ex);
+                logger.error("leader watch error", ex);
                 try {
                     Thread.sleep(10 * 1000);
                 } catch (InterruptedException e) {
-                    logger.error(""), e);
+                    logger.error("", e);
                 }
             }
         }
@@ -131,10 +131,10 @@ public class ConsulElectServiceImpl implements ConsulElectService {
         Boolean electResult = false;
         // 创建一个关联到当前节点的Session
         if (StringUtils.isNotEmpty(consulLock.getSessionId())) {
-            logger.info("consulLock.getSessionId() is not null"));
+            logger.info("consulLock.getSessionId() is not null");
             Session s = consulLock.getSession();
             if (null == s) {
-                logger.info("session not exits {}", "seesionId")), consulLock.getSessionId());
+                logger.info("session not exits {}", "seesionId", consulLock.getSessionId());
                 consulLock.createSession();
             }
         } else {
@@ -142,20 +142,20 @@ public class ConsulElectServiceImpl implements ConsulElectService {
             // 注意：如果程序关闭后很快启动，session关联的健康检查可能不会失败，所以session不会失效
             // 这时候可以把程序创建的sessionId保存起来，重启后首先尝试用上次的sessionId，
             if (cluster != null && nodeId.equals(getNodeId(cluster.getLeaderId())) && StringUtils.isNotBlank(cluster.getSessionId())) {
-                logger.info("ElectResponse cluster is not  null nodeId.equals(cluster.getLeaderId())"));
+                logger.info("ElectResponse cluster is not  null nodeId.equals(cluster.getLeaderId())");
                 // 当前节点是主节点
                 consulLock.setSessionId(cluster.getSessionId());
                 Session s = consulLock.getSession();
                 if (null == s) {
-                    logger.info("session not exits", "sessionId")), cluster.getSessionId());
+                    logger.info("session not exits", "sessionId", cluster.getSessionId());
                     // session 已经不存在
                     consulLock.createSession();
                 }
             } else {
-                logger.info("ElectResponse cluster is null or nodeId.notEquals(cluster.getLeaderId())", "leader")), cluster == null ? "" : cluster.getLeaderId());
+                logger.info("ElectResponse cluster is null or nodeId.notEquals(cluster.getLeaderId())", "leader", cluster == null ? "" : cluster.getLeaderId());
                 consulLock.createSession();
             }
-            logger.info("session id", "sessionId")), consulLock.getSessionId());
+            logger.info("session id", "sessionId", consulLock.getSessionId());
         }
         // 抢占 KV 成为leader
         electResult = consulLock.lock(false);

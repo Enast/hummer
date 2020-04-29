@@ -1,6 +1,5 @@
 package org.hummer.cluster.utils;
 
-import log.HikLog;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,7 @@ public class MachineCodeUtils {
             }
             return stringBuilder.toString();
         } catch (Exception e) {
-            logger.error(""), e);
+            logger.error("", e);
         }
         return StringUtils.EMPTY;
     }

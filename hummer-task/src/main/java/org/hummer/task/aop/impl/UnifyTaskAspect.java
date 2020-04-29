@@ -5,7 +5,6 @@ import org.hummer.task.client.remotecall.service.ClientUnifyTaskService;
 import org.hummer.task.client.remotecall.vo.UnifyTaskStatus;
 import org.hummer.task.vo.TaskAjaxResult;
 import org.hummer.task.aop.UnifyTask;
-import log.HikLog;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -40,7 +39,7 @@ public class UnifyTaskAspect {
     @Resource
     ServerUtils serverUtils;
 
-    @Pointcut("@annotation(com...task.aop.UnifyTask)")
+    @Pointcut("@annotation(org.hummer.task.aop.UnifyTask)")
     private void pcMethod() {
 
     }
@@ -54,7 +53,7 @@ public class UnifyTaskAspect {
         try {
             taskStatus = (UnifyTaskStatus) pjp.proceed();
         } catch (Exception e) {
-            logger.error("UnifyTaskImpl error"), e);
+            logger.error("UnifyTaskImpl error", e);
             taskStatus = new UnifyTaskStatus(false, System.currentTimeMillis() - time);
         }
         // 方法不返回状态,这里新建成功的状态
@@ -66,9 +65,9 @@ public class UnifyTaskAspect {
         }
         taskStatus.setServer(serverUtils.getContextPath());
         taskStatus.setTaskNo(unifyTask.taskNo());
-        logger.info("{},{},{}", "server", "taskNo", "status")), taskStatus.getServer(), taskStatus.getTaskNo(), taskStatus.getSuccess());
+        logger.info("{},{},{}", "server", "taskNo", "status", taskStatus.getServer(), taskStatus.getTaskNo(), taskStatus.getSuccess());
         TaskAjaxResult<Boolean> result = unifyTaskService.reportTaskStatus(taskStatus);
-        logger.info("reportTaskStatus", "status")), result == null ? null : result.getData());
+        logger.info("reportTaskStatus", "status", result == null ? null : result.getData());
         return taskStatus;
     }
 
