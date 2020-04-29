@@ -1,12 +1,12 @@
 package org.hummer.dynamodel.db.filed;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.hummer.dynamodel.conmon.DynamicModelDefaultAttributes;
 import org.hummer.dynamodel.conmon.TimeUtils;
 import org.hummer.dynamodel.db.DBOperation;
 import org.hummer.dynamodel.db.Field;
 import org.hummer.dynamodel.db.dao.DtbCommonDao;
-import org.hummer.dynamodel.db.AbstractOperate;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,14 +28,14 @@ public class InsertFieldOperation extends AbstractFieldOperation {
      */
     @Override
     public void before() {
-        List<Map<String, Object>> result = dtbCommonDao.query(AbstractOperate.columSql + tableName + AbstractOperate.columSqlEnd);
+        List<Map<String, Object>> result = dtbCommonDao.query(columSql + tableName + columSqlEnd);
         Set<String> columns = result.stream().map(m -> (String) m.get("column_name")).collect(Collectors.toSet());
 
         stringBuilder.append(" INSERT INTO \"").append(tableName).append("\"").append(" ( ");
         List<String> filedCodes = fields.keySet().stream().collect(Collectors.toList());
         List<String> newfiledCodes = new ArrayList<>();
         for (String field : filedCodes) {
-            if (!columns.contains(field)) {
+            if (!columns.contains(field) || DynamicModelDefaultAttributes.id.getCode().equals(field) || DynamicModelDefaultAttributes.createTime.getCode().equals(field) || DynamicModelDefaultAttributes.modifyTime.getCode().equals(field)) {
                 continue;
             }
             stringBuilder.append("\"").append(field).append("\",");
@@ -60,14 +60,28 @@ public class InsertFieldOperation extends AbstractFieldOperation {
                     }
                 }
             }
-            Date date = new Date();
-            stringBuilder.append(toTimestamp + singleQuote).append(TimeUtils.date2Str(new Date(), TimeUtils.IOS8601_XXX)).append(singleQuote + YYYYMMDDSSXXX).append(",");
-            stringBuilder.append(toTimestamp + singleQuote).append(TimeUtils.date2Str(new Date(), TimeUtils.IOS8601_XXX)).append(singleQuote + YYYYMMDDSSXXX).append(")");
+            Date dateCreate = null;
+            Date dateModify = null;
+            String createTime = metric.get(DynamicModelDefaultAttributes.createTime.getCode());
+            String modifyTime = metric.get(DynamicModelDefaultAttributes.modifyTime.getCode());
+            if (StringUtils.isNotBlank(createTime)) {
+                Date date = TimeUtils.castToDate(createTime);
+                dateCreate = date == null ? new Date() : date;
+            } else {
+                dateCreate = new Date();
+            }
+            stringBuilder.append(toTimestamp + singleQuote).append(TimeUtils.date2Str(dateCreate, TimeUtils.IOS8601_XXX)).append(singleQuote + YYYYMMDDSSXXX).append(",");
+            if (StringUtils.isNotBlank(modifyTime)) {
+                Date date = TimeUtils.castToDate(modifyTime);
+                dateModify = date == null ? new Date() : date;
+            } else {
+                dateModify = new Date();
+            }
+            stringBuilder.append(toTimestamp + singleQuote).append(TimeUtils.date2Str(dateModify, TimeUtils.IOS8601_XXX)).append(singleQuote + YYYYMMDDSSXXX).append(")");
             c++;
             if (c < values.size()) {
                 stringBuilder.append(",");
             }
         }
     }
-
 }
