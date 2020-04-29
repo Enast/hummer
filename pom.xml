@@ -231,6 +231,11 @@
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
             <!-- 要将源码放上去，需要加入这个插件 -->
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
