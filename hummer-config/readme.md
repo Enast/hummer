@@ -58,13 +58,13 @@
     主要是在对应的配置项所在的spring bean 类中注解@EnableUnifyConfig即可。
     参考样例:
     场景一:
-    1.hummer-alarm 中HamPersonChanelPeoperties(这是properties类注解的例子)
+    1.hummer-stream 中HamPersonChanelPeoperties(这是properties类注解的例子)
         1.1
             application.properties文件中可以预先配置:"hummer.person.chanel.pageSize"这个配置项
         如果,运管的自定义配置项中不存在名称定义为:"hummer.person.chanel.pageSize"(和application.properties文件保持一致)的配置
-        那么程序运行中使用的application.properties文件的配置,否则使用运管自定义配置的值
+        那么程序运行中使用的application.properties文件的配置,否则使用“配置变更服务”（第三方）配置的值
         1.2
-            在运管管理平台修改服务的"配置参数"时,如果不是需要服务重启的参数,那么就会由hummer-config对进行配置修改之后的值热加载在程序内存中.实现配置项的变更
+            在“配置变更服务”修改服务的"配置参数"时,如果不是需要服务重启的参数,那么就会由hummer-config对进行配置修改之后的值热加载在程序内存中.实现配置项的变更
     场景二:
     2.hummer-cluster,ConsulElectServiceImpl(这是@Value注解是配置)
         处理逻辑和1.1,1.2一致,运管中自定义配置项的名称和application.properties文件(@Value注解配置的配置项名称一致)
