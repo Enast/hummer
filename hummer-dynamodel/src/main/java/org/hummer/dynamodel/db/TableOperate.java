@@ -11,9 +11,13 @@ import java.util.List;
  **/
 public interface TableOperate {
 
-    int crate(TableObject tables);
+    int crate(TableObject table);
 
     int drop(TableObject tables);
+
+    int deleteField(TableObject table);
+
+    int deleteField(List<TableObject> tables);
 
     int update(TableObject tables);
 
@@ -28,4 +32,8 @@ public interface TableOperate {
     int updateAttribute(BaseAttribute attribute, String tableName);
 
     int updateAttributes(List<BaseAttribute> attributes, String tableName);
+
+    int deleteAttribute(BaseAttribute attribute, String tableName);
+
+    int deleteAttributes(List<BaseAttribute> attributes, String tableName);
 }
