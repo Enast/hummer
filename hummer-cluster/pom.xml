@@ -79,11 +79,5 @@
                 </configuration>
             </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <!-- 在部分Maven插件上，为了避免非标准的Maven声明周期描述报错，需要添加下面这段 -->
-
-            </plugins>
-        </pluginManagement>
     </build>
 </project>
