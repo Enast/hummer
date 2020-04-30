@@ -23,7 +23,6 @@ import java.lang.reflect.Method;
  * @update 2019-11-13 10:25
  **/
 @Aspect
-@Component
 public class DistributeLockAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(DistributeLockAspect.class);

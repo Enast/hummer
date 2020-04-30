@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -19,7 +20,6 @@ import javax.annotation.Resource;
  * @update 2019-10-12 13:42
  **/
 @Aspect
-@Component
 public class ClusterMasterAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ClusterMasterAspect.class);

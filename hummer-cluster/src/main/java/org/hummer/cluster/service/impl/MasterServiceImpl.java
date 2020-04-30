@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
  * @create 2019-10-08 21:29
  * @update 2019-10-08 21:29
  **/
-@Service
 public class MasterServiceImpl implements MasterService, ApplicationContextAware {
 
     private Logger logger = LoggerFactory.getLogger(MasterServiceImpl.class);
@@ -42,7 +41,7 @@ public class MasterServiceImpl implements MasterService, ApplicationContextAware
             return;
         }
         ClusterStatus.setMaster(electResponse.getElectResult());
-        logger.info("deal elect", "result", "master", nodeId, electResponse.getElectResult());
+        logger.info("deal elect result:{} ,master:{}", nodeId, electResponse.getElectResult());
         context.publishEvent(new ElectEvent(nodeId, electResponse));
     }
 

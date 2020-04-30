@@ -27,7 +27,6 @@ import java.util.concurrent.*;
  * @create 2019-10-08 19:01
  * @update 2019-10-08 19:01
  **/
-@Service
 @EnableUnifyConfig
 public class ConsulElectServiceImpl implements ConsulElectService {
 
@@ -65,7 +64,7 @@ public class ConsulElectServiceImpl implements ConsulElectService {
         masterService.businessSwitch(electResponse, nodeId);
         logger.info("", "result", "manager", electResponse.getElectResult(), electResponse.getLeaderId());
         //创建一个可重用的固定线程池数的线程池
-        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("ConsulElect-pool-%d").build();
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("ConsulElect-%d").build();
         ExecutorService executorService = new ThreadPoolExecutor(1, 1, 180, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), namedThreadFactory);
         executorService.execute(() -> {
             watch(electResponse);
@@ -147,7 +146,7 @@ public class ConsulElectServiceImpl implements ConsulElectService {
                 consulLock.setSessionId(cluster.getSessionId());
                 Session s = consulLock.getSession();
                 if (null == s) {
-                    logger.info("session not exits", "sessionId", cluster.getSessionId());
+                    logger.info("session not exits,sessionId:{}", cluster.getSessionId());
                     // session 已经不存在
                     consulLock.createSession();
                 }
@@ -155,7 +154,7 @@ public class ConsulElectServiceImpl implements ConsulElectService {
                 logger.info("ElectResponse cluster is null or nodeId.notEquals(cluster.getLeaderId())", "leader", cluster == null ? "" : cluster.getLeaderId());
                 consulLock.createSession();
             }
-            logger.info("session id", "sessionId", consulLock.getSessionId());
+            logger.info("session id,sessionId:{}", consulLock.getSessionId());
         }
         // 抢占 KV 成为leader
         electResult = consulLock.lock(false);
