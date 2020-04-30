@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.hummer.dynamodel.db.TableOperateHandler,\
+  org.hummer.dynamodel.db.FiledOperateHandler

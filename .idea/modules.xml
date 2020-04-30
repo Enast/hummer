@@ -3,6 +3,16 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/hummer.iml" filepath="$PROJECT_DIR$/hummer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-cluster/hummer-cluster.iml" filepath="$PROJECT_DIR$/hummer-cluster/hummer-cluster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-common/hummer-common.iml" filepath="$PROJECT_DIR$/hummer-common/hummer-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-config/hummer-config.iml" filepath="$PROJECT_DIR$/hummer-config/hummer-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-demos/hummer-demos.iml" filepath="$PROJECT_DIR$/hummer-demos/hummer-demos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-dynamodel/hummer-dynamodel.iml" filepath="$PROJECT_DIR$/hummer-dynamodel/hummer-dynamodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-stream/hummer-stream.iml" filepath="$PROJECT_DIR$/hummer-stream/hummer-stream.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-task/hummer-task.iml" filepath="$PROJECT_DIR$/hummer-task/hummer-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-core/stream-core.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-core/stream-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-flink/stream-flink.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-flink/stream-flink.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-redis/stream-redis.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-redis/stream-redis.iml" />
     </modules>
   </component>
 </project>
