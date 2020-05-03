@@ -3,28 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <artifactId>hummer-demos</artifactId>
+        <groupId>org.hummer</groupId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-    <modules>
-        <module>demo-task</module>
-        <module>demo-cluster</module>
-        <module>demo-config</module>
-        <module>demo-stream-redis</module>
-        <module>demo-stream-flink</module>
-        <module>demo-dynamodel</module>
-    </modules>
-    <groupId>org.hummer</groupId>
-    <artifactId>hummer-demos</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
+
+    <artifactId>demo-cluster</artifactId>
 
     <dependencies>
         <dependency>
@@ -73,7 +58,7 @@
     </dependencies>
 
     <build>
-        <finalName>demo</finalName>
+        <finalName>demos-cluster</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -84,7 +69,7 @@
                             <addClasspath>true</addClasspath>
                             <useUniqueVersions>true</useUniqueVersions>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>DemoApplication</mainClass>
+                            <mainClass>org.hummer.demo.DemoApplication</mainClass>
                         </manifest>
                         <manifestEntries>
                             <Class-Path>./</Class-Path>
@@ -112,4 +97,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
