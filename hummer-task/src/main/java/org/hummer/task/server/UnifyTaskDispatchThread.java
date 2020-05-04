@@ -1,10 +1,10 @@
-package org.hummer.task.server.remotecall.unifytask;
+package org.hummer.task.server;
 
 import org.hummer.common.SpringBeanFactory;
 import org.hummer.task.common.UnifyTaskStatusType;
-import org.hummer.task.server.remotecall.delayqueue.UnifyTaskQueueElement;
-import org.hummer.task.server.remotecall.delayqueue.UnifyTaskQueueManager;
-import org.hummer.task.server.remotecall.unifytask.service.impl.UnifyTaskServiceImpl;
+import org.hummer.task.server.delayqueue.UnifyTaskQueueElement;
+import org.hummer.task.server.delayqueue.UnifyTaskQueueManager;
+import org.hummer.task.server.service.impl.UnifyTaskServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

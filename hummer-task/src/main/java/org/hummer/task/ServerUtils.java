@@ -12,7 +12,6 @@ import javax.servlet.ServletContext;
  * @create 2019-10-12 16:47
  * @update 2019-10-12 16:47
  **/
-@Component
 public class ServerUtils {
 
     @Autowired

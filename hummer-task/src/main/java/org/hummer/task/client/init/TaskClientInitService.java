@@ -28,7 +28,6 @@ import java.util.Map;
  * @create 2019-10-11 11:41
  * @update 2019-10-11 11:41
  **/
-@Component
 public class TaskClientInitService implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(TaskClientInitService.class);

@@ -1,4 +1,4 @@
-package org.hummer.task.server.remotecall.unifytask.biz;
+package org.hummer.task.server.biz;
 
 import org.hummer.task.server.remotecall.UnifyTaskLog;
 

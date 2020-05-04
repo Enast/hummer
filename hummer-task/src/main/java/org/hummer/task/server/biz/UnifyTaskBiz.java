@@ -1,4 +1,4 @@
-package org.hummer.task.server.remotecall.unifytask.biz;
+package org.hummer.task.server.biz;
 
 import java.util.Date;
 import org.hummer.task.server.remotecall.UnifyTask;

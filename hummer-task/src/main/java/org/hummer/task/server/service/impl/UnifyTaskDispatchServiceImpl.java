@@ -1,7 +1,7 @@
-package org.hummer.task.server.remotecall.unifytask.service.impl;
+package org.hummer.task.server.service.impl;
 
-import org.hummer.task.server.remotecall.service.ServerUnifyTaskService;
-import org.hummer.task.server.remotecall.unifytask.service.UnifyTaskDispatchService;
+import org.hummer.task.server.service.ServerUnifyTaskService;
+import org.hummer.task.server.service.UnifyTaskDispatchService;
 import org.hummer.task.vo.TaskAjaxResult;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -15,11 +15,10 @@ import java.util.concurrent.Future;
  * @create 2019-10-12 13:07
  * @update 2019-10-12 13:07
  **/
-@Service
 public class UnifyTaskDispatchServiceImpl implements UnifyTaskDispatchService {
 
     @Resource
-    ServerUnifyTaskService unifyTaskService;
+    ServerUnifyTaskService serverUnifyTaskService;
 
     /**
      * 异步调用任务
@@ -31,7 +30,7 @@ public class UnifyTaskDispatchServiceImpl implements UnifyTaskDispatchService {
     @Override
     @Async
     public Future<TaskAjaxResult<Boolean>> dispatchTaskAsync(String server, String taskName) {
-        Future<TaskAjaxResult<Boolean>> resultFuture = new AsyncResult(unifyTaskService.dispatchTask(server, taskName));
+        Future<TaskAjaxResult<Boolean>> resultFuture = new AsyncResult(serverUnifyTaskService.dispatchTask(server, taskName));
         return resultFuture;
     }
 
@@ -44,6 +43,6 @@ public class UnifyTaskDispatchServiceImpl implements UnifyTaskDispatchService {
      */
     @Override
     public TaskAjaxResult<Boolean> dispatchTask(String server, String taskName) {
-        return unifyTaskService.dispatchTask(server, taskName);
+        return serverUnifyTaskService.dispatchTask(server, taskName);
     }
 }

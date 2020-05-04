@@ -1,10 +1,11 @@
 package org.hummer.task.server.remotecall.client;
 
 import org.hummer.task.HttpUtils;
-import org.hummer.task.server.remotecall.service.ServerUnifyTaskService;
+import org.hummer.task.server.service.ServerUnifyTaskService;
 import org.hummer.task.vo.TaskAjaxResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,12 @@ import javax.annotation.Resource;
  * @create 2018-09-11 19:32
  * @update 2018-09-11 19:32
  **/
-@Service
 public class ServerUnifyTaskServiceImpl implements ServerUnifyTaskService {
 
     private Logger log = LoggerFactory.getLogger(ServerUnifyTaskServiceImpl.class);
 
     @Resource
+    @Qualifier("taskRest")
     RestTemplate rt;
 
     /**
@@ -36,7 +37,8 @@ public class ServerUnifyTaskServiceImpl implements ServerUnifyTaskService {
      */
     @Override
     public TaskAjaxResult<Boolean> dispatchTask(String server, String taskName) {
-        TaskAjaxResult<Boolean> result = rt.exchange("http://" + server + "/" + server + "/cloud/unifyTask/v1/dispatch/startTask?taskName=" + taskName, HttpMethod.GET, HttpUtils.getHttpEntity(null), new ParameterizedTypeReference<TaskAjaxResult>() {}).getBody();
+        TaskAjaxResult<Boolean> result = rt.exchange("http://" + server + "/" + server + "/cloud/unifyTask/v1/dispatch/startTask?taskName=" + taskName, HttpMethod.GET, HttpUtils.getHttpEntity(null), new ParameterizedTypeReference<TaskAjaxResult>() {
+        }).getBody();
         return result;
     }
 }

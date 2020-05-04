@@ -69,7 +69,7 @@
                             <addClasspath>true</addClasspath>
                             <useUniqueVersions>true</useUniqueVersions>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>org.hummer.demo.DemoApplication</mainClass>
+                            <mainClass>org.hummer.demo.ClusterApplication</mainClass>
                         </manifest>
                         <manifestEntries>
                             <Class-Path>./</Class-Path>

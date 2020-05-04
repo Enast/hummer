@@ -32,7 +32,7 @@
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <sourceEncoding>UTF-8</sourceEncoding>
         <java.version>1.8</java.version>
-        <sorm.version>1.0.9-SNAPSHOT</sorm.version>
+        <sorm.version>1.0.10</sorm.version>
         <swagger-models.version>1.5.20</swagger-models.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <security.version>1.2.5</security.version>
@@ -214,12 +214,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>28.2-jre</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.atshow</groupId>
-                <artifactId>sorm</artifactId>
-                <version>${sorm.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

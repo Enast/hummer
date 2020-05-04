@@ -23,7 +23,6 @@ import java.util.List;
  * @create 2019-10-11 9:24
  * @update 2019-10-11 9:24
  **/
-@Service
 public class TaskExecuteServiceImpl implements TaskExecuteService {
 
     @Resource

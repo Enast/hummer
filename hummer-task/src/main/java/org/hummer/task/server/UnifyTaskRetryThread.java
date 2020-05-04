@@ -1,11 +1,11 @@
-package org.hummer.task.server.remotecall.unifytask;
+package org.hummer.task.server;
 
 import org.hummer.task.common.UnifyTaskStatusType;
 import org.hummer.task.server.remotecall.UnifyTask;
 import org.hummer.task.server.remotecall.UnifyTaskLog;
-import org.hummer.task.server.remotecall.unifytask.biz.UnifyTaskBiz;
-import org.hummer.task.server.remotecall.unifytask.biz.UnifyTaskLogBiz;
-import org.hummer.task.server.remotecall.unifytask.service.UnifyTaskDispatchService;
+import org.hummer.task.server.biz.UnifyTaskBiz;
+import org.hummer.task.server.biz.UnifyTaskLogBiz;
+import org.hummer.task.server.service.UnifyTaskDispatchService;
 import org.hummer.task.vo.TaskAjaxResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

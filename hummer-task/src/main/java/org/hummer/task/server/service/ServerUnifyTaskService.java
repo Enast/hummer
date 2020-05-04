@@ -1,4 +1,4 @@
-package org.hummer.task.server.remotecall.service;
+package org.hummer.task.server.service;
 
 import org.hummer.task.vo.TaskAjaxResult;
 

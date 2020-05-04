@@ -1,4 +1,4 @@
-package org.hummer.task.server.remotecall.unifytask.service.impl;
+package org.hummer.task.server.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import org.hummer.cluster.aop.ClusterMaster;
@@ -9,14 +9,14 @@ import org.hummer.task.client.remotecall.vo.UnifyTaskUpdate;
 import org.hummer.task.common.UnifyTaskStatusType;
 import org.hummer.task.server.remotecall.UnifyTask;
 import org.hummer.task.server.remotecall.UnifyTaskLog;
-import org.hummer.task.server.remotecall.delayqueue.UnifyTaskQueueElement;
-import org.hummer.task.server.remotecall.delayqueue.UnifyTaskQueueManager;
-import org.hummer.task.server.remotecall.unifytask.UnifyTaskDispatchThread;
-import org.hummer.task.server.remotecall.unifytask.UnifyTaskRetryThread;
-import org.hummer.task.server.remotecall.unifytask.biz.UnifyTaskBiz;
-import org.hummer.task.server.remotecall.unifytask.biz.UnifyTaskLogBiz;
-import org.hummer.task.server.remotecall.unifytask.service.UnifyTaskDispatchService;
-import org.hummer.task.server.remotecall.unifytask.service.UnifyTaskService;
+import org.hummer.task.server.delayqueue.UnifyTaskQueueElement;
+import org.hummer.task.server.delayqueue.UnifyTaskQueueManager;
+import org.hummer.task.server.UnifyTaskDispatchThread;
+import org.hummer.task.server.UnifyTaskRetryThread;
+import org.hummer.task.server.biz.UnifyTaskBiz;
+import org.hummer.task.server.biz.UnifyTaskLogBiz;
+import org.hummer.task.server.service.UnifyTaskDispatchService;
+import org.hummer.task.server.service.UnifyTaskService;
 import org.hummer.task.vo.TaskAjaxResult;
 import org.quartz.CronExpression;
 import org.quartz.impl.triggers.CronTriggerImpl;
@@ -44,7 +44,6 @@ import java.util.stream.Collectors;
  * @create 2019-10-11 14:09
  * @update 2019-10-11 14:09
  **/
-@Service
 public class UnifyTaskServiceImpl implements UnifyTaskService {
 
     private static final Logger logger = LoggerFactory.getLogger(UnifyTaskServiceImpl.class);

@@ -1,4 +1,4 @@
-package org.hummer.task.server.remotecall.unifytask.biz.impl;
+package org.hummer.task.server.biz.impl;
 
 import org.hummer.task.common.UnifyTaskStatusType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import sf.database.dao.DBClient;
 import sf.database.mapper.DaoMapperImpl;
 import org.hummer.task.server.remotecall.UnifyTask;
-import org.hummer.task.server.remotecall.unifytask.biz.UnifyTaskBiz;
+import org.hummer.task.server.biz.UnifyTaskBiz;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +15,6 @@ import java.util.List;
  * @create 2019-10-11 20:10
  * @update 2019-10-11 20:10
  **/
-@Repository
 public class UnifyTaskBizImpl extends DaoMapperImpl<UnifyTask> implements UnifyTaskBiz {
 
     public UnifyTaskBizImpl(@Autowired DBClient dbClient) {

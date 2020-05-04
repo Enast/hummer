@@ -1,8 +1,9 @@
 package org.hummer.demo.task;
 
 import org.hummer.cluster.service.MasterService;
-import org.hummer.task.server.remotecall.unifytask.service.UnifyTaskService;
+import org.hummer.task.server.service.UnifyTaskService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
@@ -11,7 +12,9 @@ import javax.annotation.Resource;
  * @create 2020-05-03 23:18
  * @update 2020-05-03 23:18
  **/
+@Component
 public class Start implements CommandLineRunner {
+
     @Resource
     MasterService masterService;
     @Resource

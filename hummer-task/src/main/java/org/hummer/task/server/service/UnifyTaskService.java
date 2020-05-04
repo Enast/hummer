@@ -1,4 +1,4 @@
-package org.hummer.task.server.remotecall.unifytask.service;
+package org.hummer.task.server.service;
 
 import org.hummer.task.client.remotecall.vo.BasicTask;
 import org.hummer.task.client.remotecall.vo.UnifyTaskRegister;
@@ -6,7 +6,7 @@ import org.hummer.task.client.remotecall.vo.UnifyTaskStatus;
 import org.hummer.task.client.remotecall.vo.UnifyTaskUpdate;
 import org.hummer.task.common.UnifyTaskStatusType;
 import org.hummer.task.server.remotecall.UnifyTask;
-import org.hummer.task.server.remotecall.delayqueue.UnifyTaskQueueElement;
+import org.hummer.task.server.delayqueue.UnifyTaskQueueElement;
 import org.hummer.task.vo.TaskAjaxResult;
 
 import java.util.List;
