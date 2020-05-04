@@ -23,6 +23,7 @@
       <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-core/stream-core.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-core/stream-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-flink/stream-flink.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-flink/stream-flink.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-redis/stream-redis.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-redis/stream-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-task/task-server.iml" filepath="$PROJECT_DIR$/hummer-task/task-server.iml" />
     </modules>
   </component>
 </project>
