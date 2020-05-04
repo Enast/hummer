@@ -4,11 +4,17 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/cluster/cluster.iml" filepath="$PROJECT_DIR$/hummer-demos/cluster/cluster.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-cluster/demo-cluster.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-cluster/demo-cluster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-cluster/demo-cluster.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-cluster/demo-cluster.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-config/demo-config.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-config/demo-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-config/demo-config.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-config/demo-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-dynamodel/demo-dynamodel.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-dynamodel/demo-dynamodel.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-dynamodel/demo-dynamodel.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-dynamodel/demo-dynamodel.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-stream-redis/demo-stream.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-stream-redis/demo-stream.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-stream-flink/demo-stream-flink.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-stream-flink/demo-stream-flink.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-stream-flink/demo-stream-flink.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-stream-flink/demo-stream-flink.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-stream-redis/demo-stream-redis.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-stream-redis/demo-stream-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-stream-redis/demo-stream-redis.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-stream-redis/demo-stream-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-task/demo-task.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-task/demo-task.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-task/demo-task.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-task/demo-task.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/demo-task/demos-task.iml" filepath="$PROJECT_DIR$/hummer-demos/demo-task/demos-task.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer.iml" filepath="$PROJECT_DIR$/hummer.iml" />
@@ -17,6 +23,7 @@
       <module fileurl="file://$PROJECT_DIR$/hummer-config/hummer-config.iml" filepath="$PROJECT_DIR$/hummer-config/hummer-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demos/hummer-demos.iml" filepath="$PROJECT_DIR$/hummer-demos/hummer-demos.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-dynamodel/hummer-dynamodel.iml" filepath="$PROJECT_DIR$/hummer-dynamodel/hummer-dynamodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-perfectmat/hummer-perfectmat.iml" filepath="$PROJECT_DIR$/hummer-perfectmat/hummer-perfectmat.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-stream/hummer-stream.iml" filepath="$PROJECT_DIR$/hummer-stream/hummer-stream.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-task/hummer-task.iml" filepath="$PROJECT_DIR$/hummer-task/hummer-task.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-core/stream-core.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-core/stream-core.iml" />

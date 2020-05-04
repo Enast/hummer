@@ -23,6 +23,7 @@
         <module>hummer-config</module>
         <module>hummer-dynamodel</module>
         <module>hummer-stream</module>
+        <module>hummer-perfectmat</module>
         <module>hummer-demos</module>
     </modules>
 
@@ -215,6 +216,11 @@
                 <version>28.2-jre</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.github.atshow</groupId>
+                <artifactId>sorm</artifactId>
+                <version>${sorm.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
