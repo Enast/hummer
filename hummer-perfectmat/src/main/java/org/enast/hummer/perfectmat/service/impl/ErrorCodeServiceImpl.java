@@ -1,9 +1,11 @@
-package org.enast.hummer.perfectmat.service;
+package org.enast.hummer.perfectmat.service.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.enast.hummer.perfectmat.PafBusinessType;
-import org.enast.hummer.perfectmat.ErrorCodeUtil;
-import org.enast.hummer.perfectmat.PafAccessData;
+import org.enast.hummer.perfectmat.entity.BusinessType;
+import org.enast.hummer.perfectmat.util.ErrorCodeUtil;
+import org.enast.hummer.perfectmat.entity.AccessData;
+import org.enast.hummer.perfectmat.service.ErrorCodeService;
+import org.enast.hummer.perfectmat.service.PropertiesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -44,7 +46,7 @@ public class ErrorCodeServiceImpl implements ErrorCodeService {
     }
 
     @Override
-    public void singleResource(Map<String, Object> status, String code, PafAccessData accessData, String businessType) {
+    public void singleResource(Map<String, Object> status, String code, AccessData accessData, String businessType) {
         ErrorCodeUtil.singleResource(status, code, accessData, businessType);
     }
 
@@ -58,7 +60,7 @@ public class ErrorCodeServiceImpl implements ErrorCodeService {
      * @param businessType
      */
     @Override
-    public void singleCustomResource(String resourceType, Map<String, Object> status, String code, PafAccessData accessData, PafBusinessType businessType, JsonNode dataObject) {
+    public void singleCustomResource(String resourceType, Map<String, Object> status, String code, AccessData accessData, BusinessType businessType, JsonNode dataObject) {
         ErrorCodeUtil.singleCustomResource(resourceType, status, code, accessData, businessType, dataObject);
     }
 

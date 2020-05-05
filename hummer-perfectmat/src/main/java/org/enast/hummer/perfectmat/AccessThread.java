@@ -3,8 +3,10 @@ package org.enast.hummer.perfectmat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.enast.hummer.common.SpringBeanFactory;
+import org.enast.hummer.perfectmat.entity.AccessData;
+import org.enast.hummer.perfectmat.entity.ResourceQuotas;
 import org.enast.hummer.perfectmat.queue.DataQueueCollection;
-import org.enast.hummer.perfectmat.service.PafParseDataServiceImpl;
+import org.enast.hummer.perfectmat.service.impl.ParseDataServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -51,12 +53,11 @@ public class AccessThread extends Thread {
             log.error("objectMapper is null. ");
             return;
         }
-        PafParseDataServiceImpl pafParseDataService = SpringBeanFactory.getBean(PafParseDataServiceImpl.class);
+        ParseDataServiceImpl pafParseDataService = SpringBeanFactory.getBean(ParseDataServiceImpl.class);
         if (pafParseDataService == null) {
             log.error("pafParseDataService is null. ");
             return;
         }
-        // 一切都是为了性能,为了性能的一切
         while (isRunning.get()) {
             try {
                 List<String> datas = (List) DataQueueCollection.pafQueue.poll(batchSize, 2000);
@@ -68,14 +69,14 @@ public class AccessThread extends Thread {
                     try {
                         long time = System.currentTimeMillis();
                         log.warn("start parse data size", "dataSize", datas.size());
-                        List<PafAccessData> accessDataList = new ArrayList<>();
+                        List<AccessData> accessDataList = new ArrayList<>();
                         Set<String> ids = new HashSet<>();
                         Set<String> encodeIds = new HashSet<>();
                         // 获取缓存和资源关系
                         for (String data : datas) {
-                            PafAccessData accessData = null;
+                            AccessData accessData = null;
                             try {
-                                accessData = objectMapper.readValue(data, PafAccessData.class);
+                                accessData = objectMapper.readValue(data, AccessData.class);
                             } catch (Exception e) {
                                 log.error("", e);
                                 continue;
@@ -86,7 +87,7 @@ public class AccessThread extends Thread {
                             }
                             accessDataList.add(accessData);
                         }
-                        for (PafAccessData accessData : accessDataList) {
+                        for (AccessData accessData : accessDataList) {
                             parseMessage(accessData, pafParseDataService,null);
                         }
                         log.warn("finished parse data,dataSize:{},time", accessDataList.size(), System.currentTimeMillis() - time);
@@ -104,7 +105,7 @@ public class AccessThread extends Thread {
         shutdownLatch.countDown();
     }
 
-    private void parseMessage(PafAccessData accessData, PafParseDataServiceImpl pafParseDataService,ResourceQuotas quota) {
+    private void parseMessage(AccessData accessData, ParseDataServiceImpl pafParseDataService, ResourceQuotas quota) {
         try {
             pafParseDataService.parseData(null,accessData, quota,null);
         } catch (Exception e) {

@@ -1,6 +1,6 @@
 package org.enast.hummer.perfectmat.converter.service;
 
-import org.enast.hummer.perfectmat.IOList;
+import org.enast.hummer.perfectmat.entity.IOList;
 
 import java.util.List;
 import java.util.Map;

@@ -1,9 +1,9 @@
 package org.enast.hummer.perfectmat.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.enast.hummer.perfectmat.ResourceQuotas;
-import org.enast.hummer.perfectmat.PafAccessData;
-import org.enast.hummer.perfectmat.ResourceCache;
+import org.enast.hummer.perfectmat.entity.ResourceQuotas;
+import org.enast.hummer.perfectmat.entity.AccessData;
+import org.enast.hummer.perfectmat.entity.ResourceCache;
 
 /**
  * @author zhujinming6
@@ -17,7 +17,7 @@ public interface PafParseDataService {
      *
      * @param accessData
      */
-    void parseData(ResourceCache simpleVO, PafAccessData accessData, ResourceQuotas quota, String code);
+    void parseData(ResourceCache simpleVO, AccessData accessData, ResourceQuotas quota, String code);
 
     /**
      * 动态解析--报文code=0
@@ -26,7 +26,7 @@ public interface PafParseDataService {
      * @param accessData
      * @param quotas
      */
-    void custom(ResourceCache simpleVO, PafAccessData accessData, ResourceQuotas quotas, String code);
+    void custom(ResourceCache simpleVO, AccessData accessData, ResourceQuotas quotas, String code);
 
     /**
      * 动态解析--报文code!=0
@@ -35,7 +35,7 @@ public interface PafParseDataService {
      * @param simpleVO
      * @param accessData
      */
-    void customErrorCode(ResourceQuotas quotas, ResourceCache simpleVO, PafAccessData accessData, String code, JsonNode dataObject);
+    void customErrorCode(ResourceQuotas quotas, ResourceCache simpleVO, AccessData accessData, String code, JsonNode dataObject);
 
     /**
      * 特殊报文固定解析
@@ -44,6 +44,6 @@ public interface PafParseDataService {
      * @param accessData
      * @param object
      */
-    void specialByBusinessType(ResourceCache simpleVO, PafAccessData accessData, JsonNode object, ResourceQuotas quotas, String businessKey);
+    void specialByBusinessType(ResourceCache simpleVO, AccessData accessData, JsonNode object, ResourceQuotas quotas, String businessKey);
 
 }

@@ -1,5 +1,6 @@
-package org.enast.hummer.perfectmat;
+package org.enast.hummer.perfectmat.entity;
 
+import org.enast.hummer.perfectmat.util.PropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +27,7 @@ public class ResourceQuotas implements Comparable<ResourceQuotas> {
     /**
      * 业务类型
      */
-    private PafBusinessType businessType;
+    private BusinessType businessType;
 
     /**
      * 采集时间
@@ -48,7 +49,7 @@ public class ResourceQuotas implements Comparable<ResourceQuotas> {
     public ResourceQuotas() {
     }
 
-    public ResourceQuotas(ResourceCache simpleVO, PafBusinessType businessType, Date collectTime, Map<String, Object> quotas) {
+    public ResourceQuotas(ResourceCache simpleVO, BusinessType businessType, Date collectTime, Map<String, Object> quotas) {
         this.resId = simpleVO.getResId();
         this.indexCode = simpleVO.getIndexCode();
         this.businessType = businessType;
@@ -57,7 +58,7 @@ public class ResourceQuotas implements Comparable<ResourceQuotas> {
         PropertiesUtil.fillDstTime(collectTime, this);
     }
 
-    public ResourceQuotas(ResourceCache simpleVO, String resourceType, PafBusinessType businessType, Date collectTime, Map<String, Object> quotas) {
+    public ResourceQuotas(ResourceCache simpleVO, String resourceType, BusinessType businessType, Date collectTime, Map<String, Object> quotas) {
         this.resId = simpleVO.getResId();
         this.indexCode = simpleVO.getIndexCode();
         this.typeCode = resourceType;
@@ -67,7 +68,7 @@ public class ResourceQuotas implements Comparable<ResourceQuotas> {
         PropertiesUtil.fillDstTime(collectTime, this);
     }
 
-    public ResourceQuotas(String resId, String indexCode, String resourceType, PafBusinessType businessType, Date collectTime, Map<String, Object> quotas) {
+    public ResourceQuotas(String resId, String indexCode, String resourceType, BusinessType businessType, Date collectTime, Map<String, Object> quotas) {
         this.resId = resId;
         this.indexCode = indexCode;
         this.typeCode = resourceType;
@@ -133,11 +134,11 @@ public class ResourceQuotas implements Comparable<ResourceQuotas> {
         this.collectTimeDiff = collectTimeDiff;
     }
 
-    public PafBusinessType getBusinessType() {
+    public BusinessType getBusinessType() {
         return businessType;
     }
 
-    public void setBusinessType(PafBusinessType businessType) {
+    public void setBusinessType(BusinessType businessType) {
         this.businessType = businessType;
     }
 

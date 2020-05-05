@@ -8,7 +8,7 @@ package org.enast.hummer.perfectmat.queue;
 public class DataQueueCollection {
 
     /**
-     * 探针队列
+     * 队列
      */
     public static DataQueue pafQueue;
 

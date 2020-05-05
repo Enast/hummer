@@ -7,7 +7,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.enast.hummer.perfectmat.*;
+import org.enast.hummer.perfectmat.common.PConstant;
+import org.enast.hummer.perfectmat.entity.AccessData;
+import org.enast.hummer.perfectmat.entity.BusinessType;
+import org.enast.hummer.perfectmat.entity.ResourceCache;
+import org.enast.hummer.perfectmat.entity.ResourceQuotas;
+import org.enast.hummer.perfectmat.util.ErrorCodeUtil;
+import org.enast.hummer.perfectmat.util.JsonNodeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -55,7 +61,7 @@ public abstract class AbstractConverter implements BasicConverter {
      * @param businessType 能力集类型
      */
     @Override
-    public void analysisSpecial(ResourceCache simpleVO, PafAccessData accessData, ResourceQuotas quotas, JsonNode dataObject, String businessType) {
+    public void analysisSpecial(ResourceCache simpleVO, AccessData accessData, ResourceQuotas quotas, JsonNode dataObject, String businessType) {
         String code = accessData.getCode();
         // 处理错误码
         dealError(simpleVO, quotas, accessData, code, businessType, dataObject);
@@ -73,7 +79,7 @@ public abstract class AbstractConverter implements BasicConverter {
      * @param code
      */
     @Override
-    public void analysis(ResourceCache simpleVO, PafAccessData accessData, ResourceQuotas quota, JsonNode dataObject,  String businessType, String code) {
+    public void analysis(ResourceCache simpleVO, AccessData accessData, ResourceQuotas quota, JsonNode dataObject, String businessType, String code) {
 
     }
 
@@ -101,11 +107,11 @@ public abstract class AbstractConverter implements BasicConverter {
      * @param businessType
      */
     @Override
-    public void dealError(ResourceCache simpleVO, ResourceQuotas quotas, PafAccessData accessData, String code, String businessType, JsonNode dataObject) {
-        if (PafConstant.NORMAL.equals(code)) {
+    public void dealError(ResourceCache simpleVO, ResourceQuotas quotas, AccessData accessData, String code, String businessType, JsonNode dataObject) {
+        if (PConstant.NORMAL.equals(code)) {
             ErrorCodeUtil.errorCodeNormal(quotas.getQuotas(), businessType);
         } else {
-            ErrorCodeUtil.singleCustomResource(simpleVO.getSubTypeCode(), quotas.getQuotas(), code, accessData, PafBusinessType.code4(businessType), dataObject);
+            ErrorCodeUtil.singleCustomResource(simpleVO.getSubTypeCode(), quotas.getQuotas(), code, accessData, BusinessType.code4(businessType), dataObject);
         }
     }
 
@@ -121,7 +127,7 @@ public abstract class AbstractConverter implements BasicConverter {
         while (iterator.hasNext()) {
             String key = iterator.next();
             // 过滤调无效属性
-            if (PafConstant.INDEX_CODE.equals(key)) {
+            if (PConstant.INDEX_CODE.equals(key)) {
                 continue;
             }
             status.put(key, JsonNodeUtil.getObject(object.get(key)));

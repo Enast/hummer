@@ -1,7 +1,11 @@
-package org.enast.hummer.perfectmat;
+package org.enast.hummer.perfectmat.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.enast.hummer.common.TimeUtils;
+import org.enast.hummer.perfectmat.entity.BusinessType;
+import org.enast.hummer.perfectmat.entity.AccessData;
+import org.enast.hummer.perfectmat.entity.ResourceCache;
+import org.enast.hummer.perfectmat.entity.ResourceQuotas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -95,7 +99,7 @@ public class PropertiesUtil {
      * @create_date 2019/11/23 15:02
      * @modify_date 2019/11/23 15:02
      */
-    public static ResourceQuotas resourceQuota(PafAccessData accessData, ResourceCache simpleVO) {
+    public static ResourceQuotas resourceQuota(AccessData accessData, ResourceCache simpleVO) {
         // 1.解析报文头
         String businessType = accessData.getBusinessType();
         // 2.报文采集时间
@@ -106,7 +110,7 @@ public class PropertiesUtil {
         }
         // 用来存储 解析的状态(静态)数据
         Map<String, Object> status = new HashMap<>();
-        PafBusinessType pafBusinessType = PafBusinessType.code4(businessType);
+        BusinessType pafBusinessType = BusinessType.code4(businessType);
         if (pafBusinessType == null) {
             log.info("unknown pafBusinessType :{},{}", businessType, simpleVO.getResId());
             return null;

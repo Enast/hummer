@@ -1,12 +1,21 @@
-package org.enast.hummer.perfectmat.service;
+package org.enast.hummer.perfectmat.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.enast.hummer.perfectmat.*;
+import org.enast.hummer.perfectmat.common.PConstant;
 import org.enast.hummer.perfectmat.converter.AbstractConverter;
 import org.enast.hummer.perfectmat.converter.ConvertersUtils;
+import org.enast.hummer.perfectmat.entity.AccessData;
+import org.enast.hummer.perfectmat.entity.BusinessType;
+import org.enast.hummer.perfectmat.entity.ResourceCache;
+import org.enast.hummer.perfectmat.entity.ResourceQuotas;
+import org.enast.hummer.perfectmat.service.ErrorCodeService;
+import org.enast.hummer.perfectmat.service.PafParseDataService;
+import org.enast.hummer.perfectmat.service.PropertiesService;
+import org.enast.hummer.perfectmat.util.ErrorCodeUtil;
+import org.enast.hummer.perfectmat.util.JsonNodeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +30,9 @@ import java.util.Iterator;
  * @update 2018-05-29 15:47
  **/
 @Service
-public class PafParseDataServiceImpl implements PafParseDataService {
+public class ParseDataServiceImpl implements PafParseDataService {
 
-    private Logger log = LoggerFactory.getLogger(PafParseDataServiceImpl.class);
+    private Logger log = LoggerFactory.getLogger(ParseDataServiceImpl.class);
 
     @Autowired
     PropertiesService propertiesService;
@@ -42,7 +51,7 @@ public class PafParseDataServiceImpl implements PafParseDataService {
      * @param accessData
      */
     @Override
-    public void parseData(ResourceCache resourceCache, PafAccessData accessData, ResourceQuotas quota, String code) {
+    public void parseData(ResourceCache resourceCache, AccessData accessData, ResourceQuotas quota, String code) {
         custom(resourceCache, accessData,quota,code);
         log.info("status,json:{}", JSON.toJSONString(quota.getQuotas()));
         // 调用cmdb接口入库
@@ -57,7 +66,7 @@ public class PafParseDataServiceImpl implements PafParseDataService {
      * @param quotas
      */
     @Override
-    public void custom(ResourceCache simpleVO, PafAccessData accessData, ResourceQuotas quotas, String code) {
+    public void custom(ResourceCache simpleVO, AccessData accessData, ResourceQuotas quotas, String code) {
         // 1.特殊处理的报文,不使用通用解析模块,包括 @specialBusinessType
         // 特殊报文(根据资源类型+能力类型/资源类型/能力类型)固定解析
         // 优先级:源类型+能力类型>资源类型>能力类型
@@ -94,7 +103,7 @@ public class PafParseDataServiceImpl implements PafParseDataService {
         while (iterator.hasNext()) {
             String key = iterator.next();
             // 过滤调无效属性
-            if (PafConstant.INDEX_CODE.equals(key)) {
+            if (PConstant.INDEX_CODE.equals(key)) {
                 continue;
             }
             JsonNode dataNode = dataObject.get(key);
@@ -124,7 +133,7 @@ public class PafParseDataServiceImpl implements PafParseDataService {
      * @param businessKey
      */
     @Override
-    public void specialByBusinessType(ResourceCache simpleVO, PafAccessData accessData, JsonNode dataObject, ResourceQuotas quotas, String businessKey) {
+    public void specialByBusinessType(ResourceCache simpleVO, AccessData accessData, JsonNode dataObject, ResourceQuotas quotas, String businessKey) {
         AbstractConverter converter = ConvertersUtils.getSpecialConverter(businessKey);
         if (converter != null) {
             converter.analysisSpecial(simpleVO, accessData, quotas, dataObject, quotas.getBusinessType().getCode());
@@ -140,12 +149,12 @@ public class PafParseDataServiceImpl implements PafParseDataService {
      * @param code
      */
     @Override
-    public void customErrorCode(ResourceQuotas quotas, ResourceCache simpleVO, PafAccessData accessData, String code, JsonNode dataObject) {
-        PafBusinessType pafBusinessType = quotas.getBusinessType();
-        if (pafBusinessType == null) {
+    public void customErrorCode(ResourceQuotas quotas, ResourceCache simpleVO, AccessData accessData, String code, JsonNode dataObject) {
+        BusinessType businessType = quotas.getBusinessType();
+        if (businessType == null) {
             return;
         }
-        errorCodeService.singleCustomResource(quotas.getTypeCode(), quotas.getQuotas(), code, accessData, pafBusinessType, dataObject);
+        errorCodeService.singleCustomResource(quotas.getTypeCode(), quotas.getQuotas(), code, accessData, businessType, dataObject);
     }
 
 }

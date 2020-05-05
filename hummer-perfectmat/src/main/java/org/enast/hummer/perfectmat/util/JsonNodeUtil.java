@@ -1,4 +1,4 @@
-package org.enast.hummer.perfectmat;
+package org.enast.hummer.perfectmat.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 bejson.com
  */
-package org.enast.hummer.perfectmat;
+package org.enast.hummer.perfectmat.entity;
 
 /**
  * Auto-generated: 2019-11-20 10:55:57
@@ -9,7 +9,7 @@ package org.enast.hummer.perfectmat;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class IOList extends AccessData {
+public class IOList {
 
     private Integer ioNum;
     private Integer ioType;

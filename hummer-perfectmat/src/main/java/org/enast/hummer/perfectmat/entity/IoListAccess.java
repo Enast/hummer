@@ -1,4 +1,4 @@
-package org.enast.hummer.perfectmat;
+package org.enast.hummer.perfectmat.entity;
 
 
 import java.util.HashMap;

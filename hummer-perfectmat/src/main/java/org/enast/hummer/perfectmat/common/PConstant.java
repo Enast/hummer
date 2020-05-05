@@ -1,14 +1,11 @@
-package org.enast.hummer.perfectmat;
-
-import java.util.ArrayList;
-import java.util.List;
+package org.enast.hummer.perfectmat.common;
 
 /**
  * @author zhujinming6
  * @create 2018-05-30 16:39
  * @update 2018-05-30 16:39
  **/
-public class PafConstant {
+public class PConstant {
 
     public static final String CODE = "code";
     public static final String ERROR_CODE = "ErrorCode";

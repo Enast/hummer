@@ -1,7 +1,7 @@
 package org.enast.hummer.perfectmat.service;
 
-import org.enast.hummer.perfectmat.ResourceQuotas;
-import org.enast.hummer.perfectmat.ResourceCache;
+import org.enast.hummer.perfectmat.entity.ResourceQuotas;
+import org.enast.hummer.perfectmat.entity.ResourceCache;
 
 /**
  * @author zhujinming6

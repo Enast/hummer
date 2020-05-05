@@ -1,6 +1,8 @@
-package org.enast.hummer.perfectmat;
+package org.enast.hummer.perfectmat.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.enast.hummer.perfectmat.entity.BusinessType;
+import org.enast.hummer.perfectmat.entity.AccessData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +37,7 @@ public class ErrorCodeUtil {
 
 
 
-    public static void singleResource(Map<String, Object> status, String code, PafAccessData accessData, String businessType) {
+    public static void singleResource(Map<String, Object> status, String code, AccessData accessData, String businessType) {
         String typeErrorCode = accessData.getTypeErrorCode();
         errorCode(status, typeErrorCode, code, businessType);
         String resourceType = accessData.getDeviceTypeCode();
@@ -51,7 +53,7 @@ public class ErrorCodeUtil {
      * @param accessData
      * @param businessType
      */
-    public static void singleCustomResource(String resourceType, Map<String, Object> status, String code, PafAccessData accessData, PafBusinessType businessType, JsonNode dataObject) {
+    public static void singleCustomResource(String resourceType, Map<String, Object> status, String code, AccessData accessData, BusinessType businessType, JsonNode dataObject) {
         String typeErrorCode = accessData.getTypeErrorCode();
         errorCode(status, typeErrorCode, code, businessType.getCode());
     }

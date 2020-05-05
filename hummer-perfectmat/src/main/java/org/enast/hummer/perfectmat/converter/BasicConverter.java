@@ -1,9 +1,9 @@
 package org.enast.hummer.perfectmat.converter;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.enast.hummer.perfectmat.ResourceQuotas;
-import org.enast.hummer.perfectmat.PafAccessData;
-import org.enast.hummer.perfectmat.ResourceCache;
+import org.enast.hummer.perfectmat.entity.ResourceQuotas;
+import org.enast.hummer.perfectmat.entity.AccessData;
+import org.enast.hummer.perfectmat.entity.ResourceCache;
 
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public interface BasicConverter {
      * @param dataObject   报文data的对象
      * @param businessType 能力集类型
      */
-    void analysisSpecial(ResourceCache simpleVO, PafAccessData accessData, ResourceQuotas quotas, JsonNode dataObject, String businessType);
+    void analysisSpecial(ResourceCache simpleVO, AccessData accessData, ResourceQuotas quotas, JsonNode dataObject, String businessType);
 
     /**
      * 统一错误处理
@@ -34,7 +34,7 @@ public interface BasicConverter {
      * @param code
      * @param businessType
      */
-    void dealError(ResourceCache simpleVO, ResourceQuotas quotas, PafAccessData accessData, String code, String businessType, JsonNode dataObject);
+    void dealError(ResourceCache simpleVO, ResourceQuotas quotas, AccessData accessData, String code, String businessType, JsonNode dataObject);
 
     /**
      * 转换器和解析必需实现的方法
@@ -45,7 +45,7 @@ public interface BasicConverter {
      * @param dataObject
      * @param businessType
      */
-    void analysis(ResourceCache simpleVO, PafAccessData accessData, ResourceQuotas quota, JsonNode dataObject, String businessType, String code);
+    void analysis(ResourceCache simpleVO, AccessData accessData, ResourceQuotas quota, JsonNode dataObject, String businessType, String code);
 
     /**
      * 转换器和解析必需实现的方法

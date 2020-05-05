@@ -1,8 +1,8 @@
 package org.enast.hummer.perfectmat.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.enast.hummer.perfectmat.PafBusinessType;
-import org.enast.hummer.perfectmat.PafAccessData;
+import org.enast.hummer.perfectmat.entity.BusinessType;
+import org.enast.hummer.perfectmat.entity.AccessData;
 
 import java.util.Map;
 
@@ -34,7 +34,7 @@ public interface ErrorCodeService {
      * @param status
      * @param code
      */
-    void singleResource(Map<String, Object> status, String code, PafAccessData accessData, String businessType);
+    void singleResource(Map<String, Object> status, String code, AccessData accessData, String businessType);
 
     /**
      * 单一状态 探针 错误码处理
@@ -42,7 +42,7 @@ public interface ErrorCodeService {
      * @param status
      * @param code
      */
-    void singleCustomResource(String resourceType, Map<String, Object> status, String code, PafAccessData accessData, PafBusinessType businessType, JsonNode dataObject);
+    void singleCustomResource(String resourceType, Map<String, Object> status, String code, AccessData accessData, BusinessType businessType, JsonNode dataObject);
 
 
     /**

@@ -1,4 +1,4 @@
-package org.enast.hummer.perfectmat;
+package org.enast.hummer.perfectmat.entity;
 
 import java.util.HashMap;
 
@@ -9,7 +9,7 @@ import java.util.HashMap;
  * @create 2019-09-25 14:31
  * @update 2019-09-25 14:31
  **/
-public enum PafBusinessType {
+public enum BusinessType {
 
     /**
      * 基本信息
@@ -21,21 +21,21 @@ public enum PafBusinessType {
     STATUS("status"),
     ;
 
-    private final static HashMap<String, PafBusinessType> CODE_TO_ENUM;
+    private final static HashMap<String, BusinessType> CODE_TO_ENUM;
 
     static {
         CODE_TO_ENUM = new HashMap<>();
-        for (PafBusinessType type : PafBusinessType.values()) {
+        for (BusinessType type : BusinessType.values()) {
             CODE_TO_ENUM.put(type.getCode(), type);
         }
     }
 
-    PafBusinessType(String code) {
+    BusinessType(String code) {
         this.code = code;
     }
 
-    public static PafBusinessType code4(String code) {
-        PafBusinessType type = CODE_TO_ENUM.get(code);
+    public static BusinessType code4(String code) {
+        BusinessType type = CODE_TO_ENUM.get(code);
         return type;
     }
 

@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 bejson.com
  */
-package org.enast.hummer.perfectmat;
+package org.enast.hummer.perfectmat.entity;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import java.util.Date;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class NetStatusList extends AccessData {
+public class NetStatusList {
 
     private Integer status;
     private Date infoTime;

@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 bejson.com
  */
-package org.enast.hummer.perfectmat;
+package org.enast.hummer.perfectmat.entity;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -13,7 +13,7 @@ import java.util.Date;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class PafAccessData extends AccessData {
+public class AccessData {
 
     private String code;
     private Integer cascade;

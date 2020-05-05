@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @create 2019-10-18 17:26
  * @update 2019-10-18 17:26
  **/
-@ConfigurationProperties(prefix = "unify.config")
+@ConfigurationProperties(prefix = "hummer.unify.config")
 public class UnifyConfigProperties {
 
     private static final Logger log = LoggerFactory.getLogger(UnifyConfigProperties.class);

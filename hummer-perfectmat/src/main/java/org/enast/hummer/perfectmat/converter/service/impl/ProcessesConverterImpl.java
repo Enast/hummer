@@ -2,7 +2,7 @@ package org.enast.hummer.perfectmat.converter.service.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.enast.hummer.perfectmat.converter.AbstractConverter;
-import org.enast.hummer.perfectmat.ResourceCache;
+import org.enast.hummer.perfectmat.entity.ResourceCache;
 import org.enast.hummer.perfectmat.aop.DataConverter;
 import org.springframework.stereotype.Component;
 

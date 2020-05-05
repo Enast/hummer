@@ -1,6 +1,6 @@
 package org.enast.hummer.perfectmat.converter.service;
 
-import org.enast.hummer.perfectmat.HdStatus;
+import org.enast.hummer.perfectmat.entity.HdStatus;
 
 import java.util.List;
 import java.util.Map;
