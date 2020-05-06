@@ -70,9 +70,6 @@ public class AccessThread extends Thread {
                         long time = System.currentTimeMillis();
                         log.warn("start parse data size", "dataSize", datas.size());
                         List<AccessData> accessDataList = new ArrayList<>();
-                        Set<String> ids = new HashSet<>();
-                        Set<String> encodeIds = new HashSet<>();
-                        // 获取缓存和资源关系
                         for (String data : datas) {
                             AccessData accessData = null;
                             try {
