@@ -18,7 +18,7 @@
         内置分布式任务调度锁，解决基于Spring定时任务框架实现的定时任务，在多实例部署场景会重复执行的问题。
     新目标：
         支持后台管理系统：任务配置、重启、修改执行时间等功能。
-link](./hummer-task/readme.md). 
+[link](./hummer-task/readme.md). 
 #### 统一配置（hummer-config）
     目前（代码整理中）：
         支持application.properties和spring自动配置的配置的热加载和更新
