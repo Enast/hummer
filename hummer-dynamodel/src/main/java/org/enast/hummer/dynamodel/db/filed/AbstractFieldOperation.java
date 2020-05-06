@@ -24,6 +24,7 @@ public abstract class AbstractFieldOperation extends AbstractOperate {
     protected String tableName;
 
     protected final static String toTimestamp = " to_timestamp(";
+    protected final static String toDate = " to_date(";
     protected final static String YYYYMMDDSSXXX = " ,'yyyy-MM-dd HH24:MI:SS.MS')";
     protected final static String singleQuote = "'";
     protected final static String toNumber = " to_number(";
@@ -44,13 +45,13 @@ public abstract class AbstractFieldOperation extends AbstractOperate {
         if (StringUtils.isBlank(value)) {
             if (dataType != null) {
                 switch (dataType) {
-                    case TIME:
                     case DATE:
+                        return toDate + "null,null)";
+                    case TIME:
                     case TIMESTAMP:
                     case TIME_WITH_TIMEZONE:
                     case TIMESTAMP_WITH_TIMEZONE:
-                        //                        return toTimestamp + singleQuote + "1970-01-01T00:00:00.000+00:00" + singleQuote + YYYYMMDDSSXXX;
-                        return "null";
+                        return toTimestamp + "null,null)";
                     case BOOLEAN:
                         return "true";
                     case BIGINT:
