@@ -22,8 +22,8 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.enast.hummer</groupId>
-            <artifactId>hummer-cluster</artifactId>
+            <groupId>org.enast.hummer.cluster</groupId>
+            <artifactId>cluster-consul</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

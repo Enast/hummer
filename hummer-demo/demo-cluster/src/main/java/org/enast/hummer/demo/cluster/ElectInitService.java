@@ -1,6 +1,6 @@
 package org.enast.hummer.demo.cluster;
 
-import org.enast.hummer.cluster.service.ConsulElectService;
+import org.enast.hummer.cluster.consul.service.ConsulElectService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

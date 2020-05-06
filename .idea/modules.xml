@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/hummer-demo/cluster/cluster.iml" filepath="$PROJECT_DIR$/hummer-demo/cluster/cluster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-cluster/cluster-consul/cluster-consul.iml" filepath="$PROJECT_DIR$/hummer-cluster/cluster-consul/cluster-consul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-cluster/cluster-core/cluster-core.iml" filepath="$PROJECT_DIR$/hummer-cluster/cluster-core/cluster-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-cluster/cluster-raft/cluster-raft.iml" filepath="$PROJECT_DIR$/hummer-cluster/cluster-raft/cluster-raft.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-cluster/cluster-zookeeper/cluster-zookeeper.iml" filepath="$PROJECT_DIR$/hummer-cluster/cluster-zookeeper/cluster-zookeeper.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-cluster/demo-cluster.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-cluster/demo-cluster.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-config/demo-config.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-config/demo-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-dynamodel/demo-dynamodel.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-dynamodel/demo-dynamodel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-stream-redis/demo-stream.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-stream-redis/demo-stream.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-stream-flink/demo-stream-flink.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-stream-flink/demo-stream-flink.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-stream-redis/demo-stream-redis.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-stream-redis/demo-stream-redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-task/demo-task.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-task/demo-task.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-task/demos-task.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-task/demos-task.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer.iml" filepath="$PROJECT_DIR$/hummer.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-cluster/hummer-cluster.iml" filepath="$PROJECT_DIR$/hummer-cluster/hummer-cluster.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-common/hummer-common.iml" filepath="$PROJECT_DIR$/hummer-common/hummer-common.iml" />

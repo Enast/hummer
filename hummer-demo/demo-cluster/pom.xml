@@ -13,8 +13,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.enast.hummer</groupId>
-            <artifactId>hummer-cluster</artifactId>
+            <groupId>org.enast.hummer.cluster</groupId>
+            <artifactId>cluster-consul</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>

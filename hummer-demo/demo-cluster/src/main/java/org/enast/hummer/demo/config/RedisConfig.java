@@ -15,7 +15,6 @@ public class RedisConfig {
 
     /**
      * 自定义RedisTemplate，使用FastJson序列化器代替默认的Jdk序列化器。
-     * Spring Data Cache自带的Jackson序列化器在序列化jef.geequery model时会堆栈溢出。
      *
      * @param redisConnectionFactory
      * @return 自定义RedisTemplate

@@ -1,7 +1,7 @@
 package org.enast.hummer.task.server;
 
-import org.enast.hummer.cluster.service.ConsulElectService;
-import org.enast.hummer.cluster.service.MasterService;
+import org.enast.hummer.cluster.consul.service.ConsulElectService;
+import org.enast.hummer.cluster.core.service.MasterService;
 import org.enast.hummer.task.server.service.UnifyTaskService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

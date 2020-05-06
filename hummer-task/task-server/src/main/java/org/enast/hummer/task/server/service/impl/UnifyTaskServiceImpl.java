@@ -1,7 +1,7 @@
 package org.enast.hummer.task.server.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import org.enast.hummer.cluster.aop.ClusterMaster;
+import org.enast.hummer.cluster.core.aop.ClusterMaster;
 import org.enast.hummer.task.core.vo.*;
 import org.enast.hummer.task.server.delayqueue.UnifyTaskQueueElement;
 import org.enast.hummer.task.server.delayqueue.UnifyTaskQueueManager;
