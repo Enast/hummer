@@ -38,7 +38,7 @@
  
  ### <a name="2">使用指南</a>
  
- #### 依赖引用(hummer-service)
+ #### 依赖引用(hummer-cluster)
  
   ```
        <dependency>
@@ -55,7 +55,7 @@
    
   ```
  
- #### 选举结果事件处理--使用举例(参考hummer-demos)
+ #### 选举结果事件处理--使用举例(参考hummer-demo)
  
  ```
     cluster.eventlistener.ElectEventListener     
@@ -69,7 +69,7 @@
     被改注解的方法,如果当前节点不是主节点,方法体的业务逻辑代码不会被执行
  ```
  
- #### 基于选举实现初始化任务不被重复执行--使用举例(参考hummer-demos)
+ #### 基于选举实现初始化任务不被重复执行--使用举例(参考hummer-demo)
   
   ```
      jar包中的ConsulElectServiceImpl的work()是选举启动的必须调用的方法
