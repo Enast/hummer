@@ -49,7 +49,7 @@ hummer-task是为了解决分布式多实例情形下任务调度的一致性(�
   
  ### <a name="2">使用指南</a>
  
- #### 依赖引用(参考hummer-service)
+ #### 依赖引用(参考hummer-task)
  
   ```
        <dependency>
