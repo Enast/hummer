@@ -11,6 +11,14 @@
  
 hummer-task是为了解决分布式多实例情形下任务调度的一致性(统一调度)问题基于Spring AOP和redisson分布式框架而实现的分布式任务调度框架.最终以jar包的方式提供使用.
  
+#### 总体设计
+![avatar](../docs/images/unifyTask.png)
+
+##### 任务调度流程
+![avatar](../docs/images/unifyTaskSche.png)
+
+##### 任务执行结果处理
+![avatar](../docs/images/unifyTaskTry.png)
 
 #### 主要功能
 
