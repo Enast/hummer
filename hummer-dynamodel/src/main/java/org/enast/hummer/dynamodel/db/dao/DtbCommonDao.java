@@ -9,4 +9,6 @@ public interface DtbCommonDao {
     int runNativeSql(String sql, DBOperation operation);
 
     List<Map<String, Object>> query(String sql);
+
+    void excute(String sql, Object... parameters);
 }

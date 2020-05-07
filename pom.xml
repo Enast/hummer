@@ -13,8 +13,23 @@
     <artifactId>hummer-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>hummer</name>
-    <url>http://maven.apache.org</url>
+    <name>${project.artifactId}</name>
+    <description>The parent project of hummer</description>
+    <url>https://github.com/Enast/hummer</url>
+    <inceptionYear>2020</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>Github Issues</system>
+        <url>https://github.com/Enast/hummer/issues</url>
+    </issueManagement>
 
     <modules>
         <module>hummer-common</module>
@@ -36,6 +51,7 @@
         <swagger-models.version>1.5.20</swagger-models.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <security.version>1.2.5</security.version>
+        <!--<revision>1.0.0-SNAPSHOT</revision>-->
         <!--<postgresql.version>42.2.4</postgresql.version>-->
     </properties>
 
@@ -294,5 +310,8 @@
                 </configuration>
             </plugin>
         </plugins>
+        <pluginManagement>
+
+        </pluginManagement>
     </build>
 </project>
