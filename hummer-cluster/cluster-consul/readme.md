@@ -11,6 +11,8 @@
  
  hummer-cluster是基于Consul的KV存储分布式选举原理引用Spring AOP技术和Spring event实现的分布式主从选举框架.最终以jar包的方式提供使用.
  
+#### 总体设计
+![avatar](../../docs/images/consulElect.png)
 
 #### 主要功能
 
