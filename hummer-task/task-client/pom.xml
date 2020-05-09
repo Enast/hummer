@@ -27,7 +27,7 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.enast.hummer</groupId>
+            <groupId>com.github.enast</groupId>
             <artifactId>hummer-config</artifactId>
             <version>${project.version}</version>
         </dependency>
