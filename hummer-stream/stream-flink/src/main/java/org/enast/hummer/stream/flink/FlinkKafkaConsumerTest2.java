@@ -13,7 +13,6 @@ import static org.enast.hummer.stream.flink.utils.KafkaConfigUtil.buildKafkaProp
 
 /**
  * Desc:
- * Created by zhisheng on 2020-03-13 15:20
  */
 public class FlinkKafkaConsumerTest2 {
     public static void main(String[] args) throws Exception {
@@ -22,7 +21,7 @@ public class FlinkKafkaConsumerTest2 {
         env.setParallelism(1);
         Properties props = buildKafkaProps(parameterTool);
 
-        FlinkKafkaConsumer011<String> consumer = new FlinkKafkaConsumer011<>("user_behavior_sink", new SimpleStringSchema(), props);
+        FlinkKafkaConsumer011<String> consumer = new FlinkKafkaConsumer011<>("user_behavior", new SimpleStringSchema(), props);
 
         env.addSource(consumer).print();
 
