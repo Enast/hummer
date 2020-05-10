@@ -45,7 +45,7 @@ public class FlinkKafkaProducerTest1 {
                     String outline = String.format("{\"online\":1,\"resId\":\"1\"}", random.nextInt(10), random.nextInt(100), random.nextInt(1000), "pv", instant.toString());
                     HashMap<String, Object> message = gson.fromJson(outline, HashMap.class);
                     message.entrySet().forEach(m -> {
-                        context.collect(new Quota(m.getKey(), m.getValue() + ""));
+                        context.collect(new Quota(m.getKey(), m.getValue() + "",System.currentTimeMillis()));
                     });
                     Thread.sleep(200);
                     log.info(outline);
@@ -72,4 +72,5 @@ public class FlinkKafkaProducerTest1 {
 class Quota {
     private String key;
     private String value;
+    private Long time;
 }
