@@ -36,9 +36,6 @@
         <module>hummer-cluster</module>
         <module>hummer-config</module>
         <module>hummer-task</module>
-        <module>hummer-dynamodel</module>
-        <module>hummer-stream</module>
-        <module>hummer-perfectmat</module>
         <module>hummer-demo</module>
     </modules>
 

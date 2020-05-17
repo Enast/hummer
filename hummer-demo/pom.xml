@@ -15,9 +15,6 @@
         <module>demo-task</module>
         <module>demo-cluster</module>
         <module>demo-config</module>
-        <module>demo-stream-redis</module>
-        <module>demo-stream-flink</module>
-        <module>demo-dynamodel</module>
     </modules>
     <groupId>org.enast.hummer</groupId>
     <artifactId>hummer-demo</artifactId>
