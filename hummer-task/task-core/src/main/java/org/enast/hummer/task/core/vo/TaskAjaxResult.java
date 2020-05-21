@@ -46,4 +46,11 @@ public class TaskAjaxResult<T> implements Serializable {
     public String toString() {
         return "AjaxResult{" + "resultCode=" + code + ", message='" + msg + '\'' + ", data=" + data + '}';
     }
+
+    public static <T> TaskAjaxResult<T> buildSuccess() {
+        TaskAjaxResult<T> result = new TaskAjaxResult<>();
+        result.setCode("0");
+        return result;
+    }
+
 }

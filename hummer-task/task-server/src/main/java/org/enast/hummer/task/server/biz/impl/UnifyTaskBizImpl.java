@@ -3,10 +3,12 @@ package org.enast.hummer.task.server.biz.impl;
 import org.enast.hummer.task.core.common.UnifyTaskStatusType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import sf.common.wrapper.Page;
 import sf.database.dao.DBClient;
 import sf.database.mapper.DaoMapperImpl;
 import org.enast.hummer.task.server.model.UnifyTask;
 import org.enast.hummer.task.server.biz.UnifyTaskBiz;
+
 import java.util.Date;
 import java.util.List;
 
@@ -33,8 +35,14 @@ public class UnifyTaskBizImpl extends DaoMapperImpl<UnifyTask> implements UnifyT
     @Override
     public UnifyTask findOne(String taskNo, String server) {
         UnifyTask unifyTask = new UnifyTask();
-        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.taskNo, taskNo)
-                .and().eq(UnifyTask.Field.server, server);
+        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.taskNo, taskNo).and().eq(UnifyTask.Field.server, server);
+        return single(unifyTask);
+    }
+
+    @Override
+    public UnifyTask findOneById(String id) {
+        UnifyTask unifyTask = new UnifyTask();
+        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.id, id);
         return single(unifyTask);
     }
 
@@ -58,8 +66,7 @@ public class UnifyTaskBizImpl extends DaoMapperImpl<UnifyTask> implements UnifyT
         UnifyTask unifyTask = new UnifyTask();
         unifyTask.setStatus(statusType);
         unifyTask.setModified(new Date());
-        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.server, server)
-                .and().eq(UnifyTask.Field.taskNo, taskNo);
+        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.server, server).and().eq(UnifyTask.Field.taskNo, taskNo);
         update(unifyTask);
     }
 
@@ -69,8 +76,7 @@ public class UnifyTaskBizImpl extends DaoMapperImpl<UnifyTask> implements UnifyT
         unifyTask.setStatus(statusType);
         unifyTask.setModified(new Date());
         unifyTask.setRetryTimes(retryTimes);
-        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.server, server)
-                .and().eq(UnifyTask.Field.taskNo, taskNo);
+        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.server, server).and().eq(UnifyTask.Field.taskNo, taskNo);
         update(unifyTask);
     }
 
@@ -80,8 +86,14 @@ public class UnifyTaskBizImpl extends DaoMapperImpl<UnifyTask> implements UnifyT
         unifyTask.setLastExecuteTime(time);
         unifyTask.setModified(new Date());
         unifyTask.setStatus(finished);
-        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.server, server)
-                .and().eq(UnifyTask.Field.taskNo, taskNo);
+        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.server, server).and().eq(UnifyTask.Field.taskNo, taskNo);
         update(unifyTask);
+    }
+
+    @Override
+    public Page<UnifyTask> pageList(int start, int size) {
+        UnifyTask unifyTask = new UnifyTask();
+        unifyTask.useQuery().orderByAsc(UnifyTask.Field.lastExecuteTime);
+        return selectPage(unifyTask, start, size);
     }
 }

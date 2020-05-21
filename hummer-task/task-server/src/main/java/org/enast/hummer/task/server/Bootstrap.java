@@ -25,8 +25,8 @@ public class Bootstrap implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        consulElectService.work("demo-task");
-        if(masterService.master()) {
+        consulElectService.work("task-server");
+        if (masterService.master()) {
             taskService.scheduleStart();
         }
     }

@@ -14,6 +14,9 @@ import org.enast.hummer.task.server.thread.UnifyTaskDispatchThread;
 import org.enast.hummer.task.server.thread.UnifyTaskRetryThread;
 import org.enast.hummer.task.server.biz.UnifyTaskBiz;
 import org.enast.hummer.task.server.biz.UnifyTaskLogBiz;
+import org.enast.hummer.task.server.web.vo.Pagination;
+import org.enast.hummer.task.server.web.vo.TaskQueryVO;
+import org.enast.hummer.task.server.web.vo.TaskVO;
 import org.quartz.CronExpression;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.slf4j.Logger;
@@ -22,13 +25,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import sf.common.wrapper.Page;
 import sf.tools.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -271,6 +272,34 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
         return true;
     }
 
+
+    private boolean resetTask(Long lastDispatchTime, UnifyTask task) {
+        CronTriggerImpl cronTrigger = new CronTriggerImpl();
+        try {
+            cronTrigger.setCronExpression(task.getTaskCron());
+            Date date = null;
+            Date nextTime = null;
+            date = cronTrigger.getFireTimeAfter(new Date(lastDispatchTime));
+            if (date != null) {
+                nextTime = cronTrigger.getFireTimeAfter(date);
+                if (nextTime != null) {
+                    task.setInterval(nextTime.getTime() - date.getTime());
+                } else {
+                    return false;
+                }
+                task.setNextExecuteTime(date);
+            } else {
+                return false;
+            }
+            task.setResetNextExecuteTime(false);
+            logger.info("taskNO:{},lastDispatchTime:{},nextExecuteTime:{},nextTime:{},Interval:{}", task.getTaskNo(), lastDispatchTime, date, nextTime, task.getInterval());
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return true;
+    }
+
+
     private boolean validateCronExpression(UnifyTask task, long lastDispatchTime) {
         // 跳过执行中的任务,但是大于一个周期还未执行完的任务不算在内
         if (task.getStatus() != null && task.getStatus() == UnifyTaskStatusType.executing) {
@@ -500,6 +529,88 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
         basicTask.setTaskNo(task.getTaskNo());
         taskAjaxResult.setData(basicTask);
         return taskAjaxResult;
+    }
+
+    /**
+     * 前端页面，分页查询
+     *
+     * @param taskQueryVO 查询参数
+     * @return
+     */
+    @Override
+    public Pagination<TaskVO> pageList(TaskQueryVO taskQueryVO) {
+        Pagination<TaskVO> pagination = new Pagination<>();
+        Page<UnifyTask> page = taskBiz.pageList((taskQueryVO.getPageNo() - 1) * taskQueryVO.getPageSize(), taskQueryVO.getPageSize());
+        pagination.setPageNo(taskQueryVO.getPageNo());
+        pagination.setPageSize(taskQueryVO.getPageSize());
+        pagination.setRows(transVO(page.getList()));
+        pagination.setTotal(page.getTotalCount());
+        pagination.setTotalPage(page.getTotalPage());
+        return pagination;
+    }
+
+
+    /**
+     * 前端页面，修改整个任务
+     *
+     * @param taskVO
+     * @return
+     */
+    @Override
+    public String update(TaskVO taskVO) {
+        UnifyTask task = taskBiz.findOneById(taskVO.getId());
+        if (task == null) {
+            logger.info("task not exists:{}", taskVO.getId());
+            // TODO 统一异常处理
+            throw new RuntimeException("task not exists");
+        }
+        task.setName(taskVO.getName());
+        if (StringUtils.isNotBlank(taskVO.getTaskCron())) {
+            boolean success = resetTask((task.getLastExecuteTime() == null ? System.currentTimeMillis() : task.getLastExecuteTime().getTime()), task);
+            if (!success) {
+                logger.info("resetTask fail :{}", taskVO.getId());
+                throw new RuntimeException("resetTask cron express fail");
+            }
+            task.setTaskCron(taskVO.getTaskCron());
+        }
+        // 重试次数上限
+        if (taskVO.getRetryTimesLimit() != null) {
+            task.setRetryTimesLimit(taskVO.getRetryTimesLimit());
+        }
+        taskBiz.update(task);
+        return "success";
+    }
+
+    /**
+     * 执行任务
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public String running(String id) {
+        UnifyTask task = taskBiz.findOneById(id);
+        if (task == null) {
+            logger.info("task not exists:{}", id);
+            // TODO 统一异常处理
+            throw new RuntimeException("task not exists");
+        }
+        UnifyTaskQueueElement element = new UnifyTaskQueueElement(task.getServer(), task.getTaskNo(), System.currentTimeMillis());
+        task.setStatus(UnifyTaskStatusType.watting);
+        if (task.getInterval() != null) {
+            task.setNextExecuteTime(new Date(System.currentTimeMillis() + task.getInterval()));
+        }
+        return null;
+    }
+
+    private List<TaskVO> transVO(List<UnifyTask> list) {
+        List<TaskVO> taskVOS = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(list)) {
+            list.forEach(task -> {
+                taskVOS.add(new TaskVO(task));
+            });
+        }
+        return taskVOS;
     }
 
 

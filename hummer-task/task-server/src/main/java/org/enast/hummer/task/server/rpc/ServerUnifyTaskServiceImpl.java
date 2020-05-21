@@ -5,6 +5,7 @@ import org.enast.hummer.task.core.common.HttpUtils;
 import org.enast.hummer.task.core.vo.TaskAjaxResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -25,7 +26,7 @@ public class ServerUnifyTaskServiceImpl implements ServerUnifyTaskService {
 
     private Logger log = LoggerFactory.getLogger(ServerUnifyTaskServiceImpl.class);
 
-    @Resource
+    @Autowired
     @Qualifier("taskRest")
     RestTemplate rt;
 

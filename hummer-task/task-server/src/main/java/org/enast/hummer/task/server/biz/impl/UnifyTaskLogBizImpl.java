@@ -4,6 +4,7 @@ import org.enast.hummer.task.server.model.UnifyTaskLog;
 import org.enast.hummer.task.server.biz.UnifyTaskLogBiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import sf.common.wrapper.Page;
 import sf.database.dao.DBClient;
 import sf.database.mapper.DaoMapperImpl;
 
@@ -22,5 +23,12 @@ public class UnifyTaskLogBizImpl extends DaoMapperImpl<UnifyTaskLog> implements 
     @Override
     public Integer add(UnifyTaskLog log) {
         return insert(log);
+    }
+
+    @Override
+    public Page<UnifyTaskLog> pageList(int start, int size) {
+        UnifyTaskLog log = new UnifyTaskLog();
+        log.useQuery().orderByDesc(UnifyTaskLog.Field.created);
+        return selectPage(log, start, size);
     }
 }

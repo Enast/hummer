@@ -1,6 +1,7 @@
 package org.enast.hummer.task.server.biz;
 
 import org.enast.hummer.task.server.model.UnifyTaskLog;
+import sf.common.wrapper.Page;
 
 
 /**
@@ -11,4 +12,5 @@ import org.enast.hummer.task.server.model.UnifyTaskLog;
 public interface UnifyTaskLogBiz {
 
     Integer add(UnifyTaskLog log);
+    Page<UnifyTaskLog> pageList(int start, int size);
 }

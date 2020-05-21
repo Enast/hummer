@@ -1,7 +1,7 @@
 # Hummer
 
 #### 介绍
-基于spring-boot的一组分布式套件，包括，主从选举、统一任务调度、统一配置等
+基于spring-boot的一组分布式套件，包括，主从选举、统一任务调度、统一配置变更等
 
 #### 主从选举（hummer-cluster）
     目前：
@@ -10,7 +10,7 @@
     新目标：
         支持zookeeper的选举方案。
         支持基于netty实现的raft选举方案。
-[详情查看](./hummer-cluster/readme.md). 
+[详情查看](./hummer-cluster/cluster-consul/readme.md). 
 #### 统一任务调度（hummer-task）
     目前：
         支持定时任务周期3分钟以上的任务的统一管理和调度，解决避免重复执行，或者执行失败后无法重试执行的问题。
@@ -31,7 +31,7 @@
 
 #### 参与贡献
 
-注意：代码提交主库在github。初次拉取代码时，如果国内网络不好，请到：https://gitee.com/enast/hummer（码云）上拉取最新代码，然后再本地切换到github即可。
+注意：代码提交主库在github。初次拉取代码时，如果国内网络不好，请到：https://gitee.com/enast/hummer （码云）上拉取最新代码，然后再本地切换到github即可。
 
 ```
 1.  Fork 本仓库

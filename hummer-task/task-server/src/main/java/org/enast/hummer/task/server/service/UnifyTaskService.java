@@ -4,6 +4,9 @@ import org.enast.hummer.task.core.vo.*;
 import org.enast.hummer.task.server.delayqueue.UnifyTaskQueueElement;
 import org.enast.hummer.task.core.common.UnifyTaskStatusType;
 import org.enast.hummer.task.server.model.UnifyTask;
+import org.enast.hummer.task.server.web.vo.Pagination;
+import org.enast.hummer.task.server.web.vo.TaskQueryVO;
+import org.enast.hummer.task.server.web.vo.TaskVO;
 
 import java.util.List;
 
@@ -68,4 +71,28 @@ public interface UnifyTaskService {
     TaskAjaxResult<BasicTask> taskByNo(String taskNo, String server);
 
     void updateTaskStatusAndTryTimes(String server, String taskNo, UnifyTaskStatusType executing, int retryTimes);
+
+    /**
+     * 前端页面，分页查询
+     *
+     * @param taskQueryVO
+     * @return
+     */
+    Pagination<TaskVO> pageList(TaskQueryVO taskQueryVO);
+
+    /**
+     * 前端页面，修改整个任务
+     *
+     * @param taskVO
+     * @return
+     */
+    String update(TaskVO taskVO);
+
+    /**
+     * 执行任务
+     *
+     * @param id
+     * @return
+     */
+    String running(String id);
 }
