@@ -49,7 +49,7 @@ public class UnifyConfigServiceImpl implements UnifyConfigService {
 //            }
 //            Object bean = entry.getValue();
 //            PropertyType propertyType = null;
-//            // 查找运管的配置是否存在该属性的值,存在则覆盖掉当前bean的值
+//            // 对接配置中心，// TODO
 //            Properties configPro = nbConfig.getPropertyPlaceHolderConfigurer().getProperties();
 //            instanceName = configPro.getProperty(unifyConfigProperties.getSegmentId() + instance);
 //            if (StringUtils.isBlank(instanceName)) {

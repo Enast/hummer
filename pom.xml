@@ -246,6 +246,14 @@
                 <scope>test</scope>
             </dependency>
 
+            <!-- apollo-client -->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>1.6.0</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 

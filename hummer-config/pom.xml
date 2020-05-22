@@ -41,6 +41,10 @@
             <!--只在编译和测试时使用-->
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

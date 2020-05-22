@@ -49,6 +49,12 @@ public class TaskRestful {
     }
 
 
+    /**
+     * 立即运存任务
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/running")
     public TaskAjaxResult<String> retry(String id) {
         TaskAjaxResult<String> result = TaskAjaxResult.buildSuccess();

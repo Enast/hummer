@@ -600,7 +600,16 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
         if (task.getInterval() != null) {
             task.setNextExecuteTime(new Date(System.currentTimeMillis() + task.getInterval()));
         }
-        return null;
+        if (UnifyTaskQueueManager.taskSet.contains(element.getServer() + element.getTaskNo())) {
+            logger.info(" had in queue {},{}", element.getServer(), element.getTaskNo());
+            return "success";
+        }
+        // 1.修改任务状态
+        updateTaskStatusAndTryTimes(element.getServer(), element.getTaskNo(), UnifyTaskStatusType.executing, 0);
+        // 调用客户端接口
+        dispatchTask(element);
+        logger.info(" running task :{},{}", element.getServer(), element.getTaskNo());
+        return "success";
     }
 
     private List<TaskVO> transVO(List<UnifyTask> list) {
