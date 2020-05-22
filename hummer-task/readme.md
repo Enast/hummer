@@ -61,7 +61,7 @@ hummer-task是为了解决分布式多实例情形下任务调度的一致性(�
  
   ```
        <dependency>
-           <groupId>org.hummer</groupId>
+           <groupId>org.enast.hummer</groupId>
            <artifactId>hummer-task</artifactId>
            <version>1.0.0-SNAPSHOT</version>
        </dependency>

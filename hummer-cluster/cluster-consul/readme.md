@@ -44,7 +44,7 @@
  
   ```
        <dependency>
-           <groupId>org.hummer</groupId>
+           <groupId>org.enast.hummer</groupId>
            <artifactId>hummer-cluster</artifactId>
            <version>1.0.0-SNAPSHOT</version>
        </dependency>
