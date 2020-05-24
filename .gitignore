@@ -23,5 +23,5 @@
 /nbdist/
 /.nb-gradle/
 /build/
-/hummer-task/task-server/webfront/node_modules/
-/webfront/first_vue/node_modules/
+#/hummer-task/task-server/webfront/node_modules/
+#/webfront/first_vue/node_modules/
