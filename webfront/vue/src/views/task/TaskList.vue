@@ -35,37 +35,40 @@
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column align="center" type="index" width="60">
       </el-table-column>
-      <el-table-column sortable prop="machineNo" label="任务Id" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="id" label="任务Id" width="120" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="orderNo" label="任务名称" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="name" label="任务名称" width="120" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="transId" label="任务编号" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="taskNo" label="任务编号" width="120" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="payType" label="服务标识" width="140" show-overflow-tooltip>
+      <el-table-column sortable prop="server" label="服务标识" width="140" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="transType" label="前置任务id" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="preTaskId" label="前置任务id" width="120" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="goodsPrice" label="corn" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="taskCron" label="corn" width="120" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="payAmount" label="重试次数" width="180" show-overflow-tooltip>
+      <el-table-column sortable prop="retryTimes" label="重试次数" width="180" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="goodsName" label="重试次数上限" width="140" show-overflow-tooltip>
+      <el-table-column sortable prop="retryTimesLimit" label="重试次数上限" width="140" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="orderStatus" label="任务状态" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="status" label="任务状态" width="120" show-overflow-tooltip>
+        <template slot-scope="scope">
+          <div>{{scope.row.status|taskStatus}}</div>
+        </template>
       </el-table-column>
       <el-table-column sortable prop="addTime" label="最近执行时间" width="180" show-overflow-tooltip>
         <template slot-scope="scope">
-          <div>{{scope.row.addTime|timestampToTime}}</div>
+          <div>{{scope.row.lastExecuteTime|timestampToTime}}</div>
         </template>
       </el-table-column>
-      <el-table-column sortable prop="addTime" label="创建时间" width="180" show-overflow-tooltip>
+      <el-table-column sortable prop="created" label="创建时间" width="180" show-overflow-tooltip>
         <template slot-scope="scope">
-          <div>{{scope.row.addTime|timestampToTime}}</div>
+          <div>{{scope.row.created|timestampToTime}}</div>
         </template>
       </el-table-column>
-      <el-table-column sortable prop="addTime" label="修改时间" width="180" show-overflow-tooltip>
+      <el-table-column sortable prop="modified" label="修改时间" width="180" show-overflow-tooltip>
         <template slot-scope="scope">
-          <div>{{scope.row.addTime|timestampToTime}}</div>
+          <div>{{scope.row.modified|timestampToTime}}</div>
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" min-width="150">

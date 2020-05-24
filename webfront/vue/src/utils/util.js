@@ -76,8 +76,15 @@ function delCookie(name) {
     setCookie(name, null, -1);
 };
 
+function taskStatus(status) {
+  if(status == "watting"){
+    return "队列等待中";
+  }else if(status == "executing"){
+    return "任务执行中";
+  }
+}
 /**
- * 导出 
+ * 导出
  **/
 export {
     timestampToTime,
@@ -86,5 +93,6 @@ export {
     removeStore,
     setCookie,
     getCookie,
-    delCookie
+    delCookie,
+    taskStatus
 }
