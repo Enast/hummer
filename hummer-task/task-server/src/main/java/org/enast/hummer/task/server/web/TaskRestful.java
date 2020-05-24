@@ -28,6 +28,7 @@ public class TaskRestful {
      * @return
      */
     @PostMapping("/page")
+    @ResponseBody
     public TaskAjaxResult<Pagination<TaskVO>> pageList(@RequestBody TaskQueryVO taskQueryVO) {
         TaskAjaxResult<Pagination<TaskVO>> result = TaskAjaxResult.buildSuccess();
         Pagination<TaskVO> pagination = unifyTaskService.pageList(taskQueryVO);

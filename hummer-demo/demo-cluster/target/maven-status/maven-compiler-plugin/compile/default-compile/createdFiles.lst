@@ -1,0 +1,5 @@
+org/enast/hummer/demo/config/FastJson2JsonRedisSerializer.class
+org/enast/hummer/demo/cluster/ElectInitService.class
+org/enast/hummer/demo/config/RedisConfig.class
+org/enast/hummer/demo/config/redission/RedissonConfig.class
+org/enast/hummer/demo/ClusterApplication.class

@@ -1,0 +1,13 @@
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/vo/ElectResponse.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/utils/MacToolUtils.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/hash/ConsistentHash.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/ConsulLock.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/aop/impl/DistributeLockAspect.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/service/impl/MasterServiceImpl.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/aop/ClusterMaster.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/utils/MachineCodeUtils.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/service/MasterService.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/aop/DistributeLock.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/ClusterStatus.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/event/ElectEvent.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-cluster/cluster-core/src/main/java/org/enast/hummer/cluster/core/aop/impl/ClusterMasterAspect.java

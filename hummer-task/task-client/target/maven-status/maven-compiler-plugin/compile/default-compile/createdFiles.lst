@@ -1,0 +1,7 @@
+org/enast/hummer/task/client/web/TaskDispatchRestful.class
+org/enast/hummer/task/client/service/impl/TestServiceImpl.class
+org/enast/hummer/task/client/init/TaskClientInitService.class
+org/enast/hummer/task/client/service/TestService.class
+org/enast/hummer/task/client/service/TaskExecuteService.class
+org/enast/hummer/task/client/config/UnifyTaskClientAutoConfiguration.class
+org/enast/hummer/task/client/service/impl/TaskExecuteServiceImpl.class

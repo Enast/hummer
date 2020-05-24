@@ -1,0 +1,17 @@
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/vo/UnifyTaskStatus.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/remotecall/client/ClientUnifyTaskServiceImpl.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/vo/UnifyTaskRegister.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/aop/impl/UnifyTaskAspect.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/config/UnifyTaskAutoConfiguration.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/vo/UnifyTaskUpdate.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/aop/DistributedJoLock.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/common/HttpUtils.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/remotecall/service/ClientUnifyTaskService.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/common/ServerUtils.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/vo/UnifyTaskBean.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/vo/BasicTask.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/vo/TaskAjaxResult.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/aop/UnifyTask.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/common/UnifyTaskStatusType.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/aop/impl/DistributedJobLockAspect.java
+/Users/zhujinming/IdeaProjects/github/hummer/hummer-task/task-core/src/main/java/org/enast/hummer/task/core/aop/EnableUnifyTask.java

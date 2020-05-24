@@ -32,9 +32,9 @@ public class TaskVO {
 
     private Integer retryTimesLimit;
 
-    private Date lastExecuteTime;
+    private Long lastExecuteTime;
 
-    private Date nextExecuteTime;
+    private Long nextExecuteTime;
 
     private Boolean forceExecute;
 
@@ -44,9 +44,9 @@ public class TaskVO {
 
     private Long interval;
 
-    private Date created;
+    private Long created;
 
-    private Date modified;
+    private Long modified;
 
     private Boolean dataValid;
 
@@ -59,14 +59,14 @@ public class TaskVO {
         this.preTaskId = task.getPreTaskId();
         this.retryTimes = task.getRetryTimes();
         this.retryTimesLimit = task.getRetryTimesLimit();
-        this.lastExecuteTime = task.getLastExecuteTime();
-        this.nextExecuteTime = task.getNextExecuteTime();
+        this.lastExecuteTime = task.getLastExecuteTime() == null ? null : task.getLastExecuteTime().getTime();
+        this.nextExecuteTime = task.getNextExecuteTime() == null ? null : task.getNextExecuteTime().getTime();
         this.forceExecute = task.getForceExecute();
         this.resetNextExecuteTime = task.getResetNextExecuteTime();
         this.status = task.getStatus();
         this.interval = task.getInterval();
-        this.created = task.getCreated();
-        this.modified = task.getModified();
+        this.created = task.getCreated() == null ? null : task.getCreated().getTime();
+        this.modified = task.getModified() == null ? null : task.getModified().getTime();
         this.dataValid = task.getDataValid();
     }
 }
