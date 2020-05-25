@@ -51,12 +51,12 @@
       </el-table-column>
       <el-table-column sortable prop="retryTimesLimit" label="重试次数上限" width="140" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="status" label="任务状态" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="status" label="任务状态"  width="120" show-overflow-tooltip>
         <template slot-scope="scope">
           <div>{{scope.row.status|taskStatus}}</div>
         </template>
       </el-table-column>
-      <el-table-column sortable prop="addTime" label="最近执行时间" width="180" show-overflow-tooltip>
+      <el-table-column sortable prop="lastExecuteTime" label="最近执行时间" width="180" show-overflow-tooltip>
         <template slot-scope="scope">
           <div>{{scope.row.lastExecuteTime|timestampToTime}}</div>
         </template>
@@ -71,10 +71,9 @@
           <div>{{scope.row.modified|timestampToTime}}</div>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作" min-width="150">
+      <el-table-column align="center" label="操作" min-width="250">
         <template slot-scope="scope">
-<!--          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">预览</el-button>-->
-          <el-button size="mini" type="danger" @click="deleteUser(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="deleteUser(scope.$index, scope.row)">关闭</el-button>
           <el-button size="mini" type="danger" @click="deleteUser(scope.$index, scope.row)">启动</el-button>
         </template>
@@ -87,66 +86,42 @@
       <el-form label-width="120px" :model="editForm" ref="editForm">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="公司编号">
-              <el-input size="small" v-model="editForm.deptId" auto-complete="off" placeholder="请输入名称" disabled></el-input>
+            <el-form-item label="任务id">
+              <el-input size="small" v-model="editForm.id" auto-complete="off" disabled></el-input>
             </el-form-item>
-            <el-form-item label="订单号">
-              <el-input size="small" v-model="editForm.orderNo" auto-complete="off" placeholder="请输入商户号" disabled></el-input>
+            <el-form-item label="任务名称">
+              <el-input size="small" v-model="editForm.name" auto-complete="off" placeholder="请输入任务名称" ></el-input>
             </el-form-item>
-            <el-form-item label="支付方式">
-              <el-input size="small" v-model="editForm.payType" auto-complete="off" placeholder="请输入商户号" disabled></el-input>
+            <el-form-item label="服务标识">
+              <el-input size="small" v-model="editForm.server" auto-complete="off" placeholder="服务标识" disabled></el-input>
             </el-form-item>
-            <el-form-item label="交易类型">
-              <el-input size="small" v-model="editForm.transType" auto-complete="off" placeholder="请输入微信子商户" disabled></el-input>
+            <el-form-item label="任务状态">
+              <el-input size="small" v-model="editForm.status" auto-complete="off" placeholder="任务状态" disabled></el-input>
             </el-form-item>
-            <el-form-item label="商品编号">
-              <el-input size="small" v-model="editForm.goodsNo" auto-complete="off" placeholder="请输入应用ID" disabled></el-input>
-            </el-form-item>
-            <el-form-item label="支付金额">
-              <el-input size="small" v-model="editForm.payAmount" auto-complete="off" placeholder="请输入通知回调" disabled></el-input>
-            </el-form-item>
-            <el-form-item label="货道号">
-              <el-input size="small" v-model="editForm.aisleNo" auto-complete="off" placeholder="请输入加密类型" disabled></el-input>
-            </el-form-item>
-            <el-form-item label="买家标识">
-              <el-input size="small" v-model="editForm.openId" auto-complete="off" placeholder="请输入商户签名密钥" disabled></el-input>
-            </el-form-item>
-            <el-form-item label="子商户号">
-              <el-input size="small" v-model="editForm.subMchId" auto-complete="off" placeholder="请输入支付宝卖家" disabled></el-input>
+            <el-form-item label="最近执行时间">
+              <el-input size="small" v-model="editForm.lastExecuteTime" auto-complete="off" placeholder="最近执行时间" disabled></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="公司名称">
-              <el-input size="small" v-model="editForm.deptName" auto-complete="off" placeholder="请输入名称" disabled></el-input>
+            <el-form-item label="任务编号">
+              <el-input size="small" v-model="editForm.taskNo" auto-complete="off" disabled></el-input>
             </el-form-item>
-            <el-form-item label="交易单号">
-              <el-input size="small" v-model="editForm.transId" auto-complete="off" placeholder="请输入商户号" disabled></el-input>
+            <el-form-item label="corn">
+              <el-input size="small" v-model="editForm.transId" auto-complete="off" placeholder="corn" ></el-input>
             </el-form-item>
-            <el-form-item label="子支付方式">
-              <el-input size="small" v-model="editForm.subPayType" auto-complete="off" placeholder="请输入商户号" disabled></el-input>
+            <el-form-item label="重试次数">
+              <el-input size="small" v-model="editForm.retryTimes" auto-complete="off" placeholder="重试次数" disabled ></el-input>
             </el-form-item>
-            <el-form-item label="终端编号">
-              <el-input size="small" v-model="editForm.machineNo" auto-complete="off" placeholder="请输入微信子商户" disabled></el-input>
+            <el-form-item label="重试次数上限">
+              <el-input size="small" v-model="editForm.retryTimesLimit" auto-complete="off" placeholder="请输入重试次数上限"></el-input>
             </el-form-item>
-            <el-form-item label="商品价格">
-              <el-input size="small" v-model="editForm.goodsPrice" auto-complete="off" placeholder="请输入应用ID" disabled></el-input>
-            </el-form-item>
-            <el-form-item label="商品名称">
-              <el-input size="small" v-model="editForm.goodsName" auto-complete="off" placeholder="请输入通知回调" disabled></el-input>
-            </el-form-item>
-            <el-form-item label="订单状态">
-              <el-input size="small" v-model="editForm.orderStatus" auto-complete="off" placeholder="请输入加密类型" disabled></el-input>
-            </el-form-item>
-            <el-form-item label="商户号">
-              <el-input size="small" v-model="editForm.mchId" auto-complete="off" placeholder="请输入商户签名密钥" disabled></el-input>
-            </el-form-item>
-            <el-form-item label="编辑用户">
-              <el-input size="small" v-model="editForm.editUser" auto-complete="off" placeholder="请输入支付宝卖家" disabled></el-input>
+            <el-form-item label="修改时间">
+              <el-input size="small" v-model="editForm.modified" auto-complete="off" placeholder="修改时间" disabled></el-input>
             </el-form-item>
           </el-col>
         </el-row>
-        <el-form-item label="备注">
-          <el-input size="small" v-model="editForm.remark" auto-complete="off" placeholder="请输入微信证书路径" disabled></el-input>
+        <el-form-item label="前置任务id">
+          <el-input size="small" v-model="editForm.preTaskId" auto-complete="off" placeholder="前置任务id" disabled></el-input>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -161,7 +136,7 @@ export default {
     return {
       loading: false, //是显示加载
       editFormVisible: false, //控制编辑页面显示与隐藏
-      title: '预览',
+      title: '编辑',
       statusType: [
         { key: '请选择', value: 0 },
         { key: '成功', value: 1 },
@@ -254,6 +229,7 @@ export default {
           this.loading = false
           this.$message.error('加载失败，请稍后再试！')
         })
+      this.listData = [{"id":"1","name":"name","status":"executing"}]
     },
     // 分页插件事件
     callFather(parm) {

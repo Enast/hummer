@@ -78,9 +78,9 @@ function delCookie(name) {
 
 function taskStatus(status) {
   if(status == "watting"){
-    return "队列等待中";
+    return "队列中";
   }else if(status == "executing"){
-    return "任务执行中";
+    return "执行中";
   }
 }
 /**
