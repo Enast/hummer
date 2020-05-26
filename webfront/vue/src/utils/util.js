@@ -77,10 +77,13 @@ function delCookie(name) {
 };
 
 function taskStatus(status) {
-  if(status == "watting"){
+  if(status == "waiting"){
     return "队列中";
   }else if(status == "executing"){
     return "执行中";
+  }
+  else if(status == "success"){
+    return "成功";
   }
 }
 /**

@@ -11,19 +11,19 @@
     <!-- 搜索筛选 -->
     <el-form :inline="true" :model="formInline" class="user-search">
       <el-form-item label="搜索：">
-        <el-input size="small" v-model="formInline.machineNo" placeholder="输入任务Id"></el-input>
+        <el-input size="small" v-model="formInline.taskId" placeholder="输入任务Id"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input size="small" v-model="formInline.orderNo" placeholder="输入任务名称"></el-input>
+        <el-input size="small" v-model="formInline.name" placeholder="输入任务名称"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input size="small" v-model="formInline.transId" placeholder="输入任务编号"></el-input>
+        <el-input size="small" v-model="formInline.taskNo" placeholder="输入任务编号"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input size="small" v-model="formInline.transId" placeholder="输入服务标识"></el-input>
+        <el-input size="small" v-model="formInline.server" placeholder="输入服务标识"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-select size="small" v-model="formInline.payType" placeholder="请选择">
+        <el-select size="small" v-model="formInline.status" placeholder="请选择">
           <el-option v-for="type in statusType" :label="type.key" :value="type.value" :key="type.value"></el-option>
         </el-select>
       </el-form-item>
@@ -139,9 +139,10 @@ export default {
       title: '编辑',
       statusType: [
         { key: '请选择', value: 0 },
-        { key: '成功', value: 1 },
-        { key: '失败', value: 2 },
-        { key: '执行中', value: 3 }
+        { key: '成功', value: 'success' },
+        { key: '失败', value: 'fail' },
+        { key: '执行中', value: 'executing' },
+        { key: '队列中', value: 'waiting' }
       ],
       editForm: {
         id: '',
@@ -162,10 +163,11 @@ export default {
       formInline: {
         pageNo: 1,
         pageSize: 10,
-        machineNo: '',
-        orderNo: '',
-        transId: '',
-        payType: 0,
+        taskId: '',
+        taskNo: '',
+        name: '',
+        status: 0,
+        server: 0,
         orderStatus: 0,
         token: localStorage.getItem('logintoken')
       },
