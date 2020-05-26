@@ -1,6 +1,7 @@
 package org.enast.hummer.task.server.biz.impl;
 
 import org.enast.hummer.task.core.common.UnifyTaskStatusType;
+import org.enast.hummer.task.server.web.vo.TaskQueryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import sf.common.wrapper.Page;
@@ -91,9 +92,12 @@ public class UnifyTaskBizImpl extends DaoMapperImpl<UnifyTask> implements UnifyT
     }
 
     @Override
-    public Page<UnifyTask> pageList(int start, int size) {
+    public Page<UnifyTask> pageList(TaskQueryVO taskQueryVO) {
         UnifyTask unifyTask = new UnifyTask();
         unifyTask.useQuery().orderByAsc(UnifyTask.Field.lastExecuteTime);
-        return selectPage(unifyTask, start, size);
+        if(taskQueryVO.getName()!=null){
+            
+        }
+        return selectPage(unifyTask, (taskQueryVO.getPageNo() - 1) * taskQueryVO.getPageSize(), taskQueryVO.getPageSize());
     }
 }

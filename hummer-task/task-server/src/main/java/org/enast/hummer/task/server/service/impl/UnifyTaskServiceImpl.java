@@ -540,7 +540,7 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
     @Override
     public Pagination<TaskVO> pageList(TaskQueryVO taskQueryVO) {
         Pagination<TaskVO> pagination = new Pagination<>();
-        Page<UnifyTask> page = taskBiz.pageList((taskQueryVO.getPageNo() - 1) * taskQueryVO.getPageSize(), taskQueryVO.getPageSize());
+        Page<UnifyTask> page = taskBiz.pageList(taskQueryVO);
         pagination.setPageNo(taskQueryVO.getPageNo());
         pagination.setPageSize(taskQueryVO.getPageSize());
         pagination.setRows(transVO(page.getList()));

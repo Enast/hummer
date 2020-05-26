@@ -10,6 +10,8 @@ import lombok.Data;
 @Data
 public class TaskLogQueryVO {
 
+    private String search;
+
     private Integer pageNo = 1;
     private Integer pageSize = 10;
 }

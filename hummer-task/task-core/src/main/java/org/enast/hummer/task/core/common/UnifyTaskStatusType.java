@@ -14,7 +14,7 @@ public enum UnifyTaskStatusType {
     /**
      * 等待中
      */
-    watting,
+    waiting,
     /**
      * 结束
      */

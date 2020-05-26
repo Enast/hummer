@@ -1,5 +1,6 @@
 package org.enast.hummer.task.server.biz.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.enast.hummer.task.server.model.UnifyTaskLog;
 import org.enast.hummer.task.server.biz.UnifyTaskLogBiz;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,13 @@ public class UnifyTaskLogBizImpl extends DaoMapperImpl<UnifyTaskLog> implements 
     }
 
     @Override
-    public Page<UnifyTaskLog> pageList(int start, int size) {
+    public Page<UnifyTaskLog> pageList(String search, int start, int size) {
         UnifyTaskLog log = new UnifyTaskLog();
         log.useQuery().orderByDesc(UnifyTaskLog.Field.created);
+        if(StringUtils.isNotBlank(search)) {
+            log.useQuery().createCriteria().like(UnifyTaskLog.Field.name, "%"+search+"%").or()
+                    .like(UnifyTaskLog.Field.server, "%"+search+"%");
+        }
         return selectPage(log, start, size);
     }
 }

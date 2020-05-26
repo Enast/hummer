@@ -1,6 +1,7 @@
 package org.enast.hummer.task.server.web.vo;
 
 import lombok.Data;
+import org.enast.hummer.task.core.common.UnifyTaskStatusType;
 
 /**
  * @author zhujinming6
@@ -9,6 +10,14 @@ import lombok.Data;
  **/
 @Data
 public class TaskQueryVO {
+
+    private String name;
+
+    private String taskNo;
+
+    private String server;
+
+    private UnifyTaskStatusType status;
 
     private Integer pageNo = 1;
     private Integer pageSize = 10;

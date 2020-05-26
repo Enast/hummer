@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.enast.hummer.task.core.common.UnifyTaskStatusType;
 import org.enast.hummer.task.server.model.UnifyTask;
+import org.enast.hummer.task.server.web.vo.TaskQueryVO;
 import sf.common.wrapper.Page;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public interface UnifyTaskBiz {
 
     void updateTaskStatusAndLastExcuteTime(String server, String taskNo, UnifyTaskStatusType finished, Date time);
 
-    Page<UnifyTask> pageList(int start, int size);
+    Page<UnifyTask> pageList(TaskQueryVO taskQueryVO);
 
     int update(UnifyTask task);
 }

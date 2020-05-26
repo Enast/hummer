@@ -12,5 +12,5 @@ import sf.common.wrapper.Page;
 public interface UnifyTaskLogBiz {
 
     Integer add(UnifyTaskLog log);
-    Page<UnifyTaskLog> pageList(int start, int size);
+    Page<UnifyTaskLog> pageList(String search, int start, int size);
 }
