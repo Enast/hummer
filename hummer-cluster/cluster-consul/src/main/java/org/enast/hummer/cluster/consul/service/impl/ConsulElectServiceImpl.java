@@ -38,7 +38,7 @@ public class ConsulElectServiceImpl implements ConsulElectService {
     @Value("${cluster.elect.blockQuery.waitTime:30}")
     private Integer waitTime;
 
-    private static String CLUSTER_REDIS_KEY = "hummer:cluster:info";
+    private static String CLUSTER_REDIS_KEY = "hummer:cluster:info:";
     @Resource
     ConsulClient consulClient;
     @Resource
@@ -47,14 +47,16 @@ public class ConsulElectServiceImpl implements ConsulElectService {
     RedisTemplate redisTemplate;
 
     private static ConsulLock consulLock;
+    private String electPrefix;
 
     @Override
-    public void work(String electName) {
+    public void work(String electPrefix) {
+        this.electPrefix = electPrefix;
         if (consulLock == null) {
             if (StringUtils.isBlank(nodeId)) {
                 nodeId = MachineCodeUtils.getCode();
             }
-            consulLock = new ConsulLock(consulClient, sessionTTL, electName, nodeId);
+            consulLock = new ConsulLock(consulClient, sessionTTL, electPrefix, nodeId);
         }
         logger.info("start first leader election");
         // 先选举一次
@@ -136,7 +138,7 @@ public class ConsulElectServiceImpl implements ConsulElectService {
                 consulLock.createSession();
             }
         } else {
-            ElectResponse cluster = (ElectResponse) redisTemplate.opsForValue().get(CLUSTER_REDIS_KEY);
+            ElectResponse cluster = (ElectResponse) redisTemplate.opsForValue().get(CLUSTER_REDIS_KEY + electPrefix);
             // 注意：如果程序关闭后很快启动，session关联的健康检查可能不会失败，所以session不会失效
             // 这时候可以把程序创建的sessionId保存起来，重启后首先尝试用上次的sessionId，
             if (cluster != null && nodeId.equals(getNodeId(cluster.getLeaderId())) && StringUtils.isNotBlank(cluster.getSessionId())) {
@@ -164,7 +166,7 @@ public class ConsulElectServiceImpl implements ConsulElectService {
         response.setModifyIndex(kv.getModifyIndex());
         if (electResult) {
             response.setSessionId(consulLock.getSessionId());
-            redisTemplate.opsForValue().set(CLUSTER_REDIS_KEY, response);
+            redisTemplate.opsForValue().set(CLUSTER_REDIS_KEY + electPrefix, response);
         }
         return response;
     }
