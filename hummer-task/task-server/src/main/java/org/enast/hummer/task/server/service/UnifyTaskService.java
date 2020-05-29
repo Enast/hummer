@@ -95,4 +95,12 @@ public interface UnifyTaskService {
      * @return
      */
     String running(String id);
+
+    /**
+     * 关闭任务
+     *
+     * @param id
+     * @return
+     */
+    String close(String id);
 }

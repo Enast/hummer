@@ -76,13 +76,15 @@ function delCookie(name) {
     setCookie(name, null, -1);
 };
 
-function taskStatus(status) {
-  if(status == "waiting"){
+function taskStatus(row) {
+  if(row.dataValid == false){
+    return "已关闭";
+  } else if(row.status == "waiting"){
     return "队列中";
-  }else if(status == "executing"){
+  }else if(row.status == "executing"){
     return "执行中";
   }
-  else if(status == "success"){
+  else if(row.status == "success"){
     return "成功";
   }
 }

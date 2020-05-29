@@ -36,4 +36,8 @@ public interface UnifyTaskBiz {
     Page<UnifyTask> pageList(TaskQueryVO taskQueryVO);
 
     int update(UnifyTask task);
+
+    void closeTask(String id);
+
+
 }

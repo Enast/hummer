@@ -9,6 +9,7 @@ import sf.database.dao.DBClient;
 import sf.database.mapper.DaoMapperImpl;
 import org.enast.hummer.task.server.model.UnifyTask;
 import org.enast.hummer.task.server.biz.UnifyTaskBiz;
+import sf.dsl.Example;
 
 import java.util.Date;
 import java.util.List;
@@ -95,9 +96,43 @@ public class UnifyTaskBizImpl extends DaoMapperImpl<UnifyTask> implements UnifyT
     public Page<UnifyTask> pageList(TaskQueryVO taskQueryVO) {
         UnifyTask unifyTask = new UnifyTask();
         unifyTask.useQuery().orderByAsc(UnifyTask.Field.lastExecuteTime);
-        if(taskQueryVO.getName()!=null){
-            
+        Example.Criteria c = unifyTask.useQuery().createCriteria();
+        boolean hasAnd = false;
+        if (taskQueryVO.getName() != null) {
+            c.like(UnifyTask.Field.name, "%" + taskQueryVO.getName() + "%");
+            hasAnd = true;
+        }
+        if (taskQueryVO.getTaskNo() != null) {
+            if (hasAnd) {
+                c.and();
+            } else {
+                hasAnd = true;
+            }
+            c.like(UnifyTask.Field.taskNo, "%" + taskQueryVO.getTaskNo() + "%");
+        }
+        if (taskQueryVO.getServer() != null) {
+            if (hasAnd) {
+                c.and();
+            } else {
+                hasAnd = true;
+            }
+            c.like(UnifyTask.Field.server, "%" + taskQueryVO.getServer() + "%");
+        }
+        if (taskQueryVO.getStatus() != null) {
+            if (hasAnd) {
+                c.and();
+            }
+            c.eq(UnifyTask.Field.status, taskQueryVO.getStatus());
         }
         return selectPage(unifyTask, (taskQueryVO.getPageNo() - 1) * taskQueryVO.getPageSize(), taskQueryVO.getPageSize());
+    }
+
+    @Override
+    public void closeTask(String id) {
+        UnifyTask unifyTask = new UnifyTask();
+        unifyTask.setModified(new Date());
+        unifyTask.setDataValid(false);
+        unifyTask.useQuery().createCriteria().eq(UnifyTask.Field.id, id);
+        update(unifyTask);
     }
 }

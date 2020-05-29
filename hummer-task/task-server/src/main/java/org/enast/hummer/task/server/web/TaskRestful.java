@@ -49,6 +49,19 @@ public class TaskRestful {
         return result;
     }
 
+    /**
+     * 关闭任务，下个周期不执行
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/close")
+    public TaskAjaxResult<String> closeTask(String id) {
+        TaskAjaxResult<String> result = TaskAjaxResult.buildSuccess();
+        result.setData(unifyTaskService.close(id));
+        return result;
+    }
+
 
     /**
      * 立即运存任务
