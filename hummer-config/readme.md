@@ -36,7 +36,7 @@
  
  #### 依赖引用(参考hummer-service)
  
-  ```
+  ```xml
        <dependency>
            <groupId>org.enast.hummer</groupId>
            <artifactId>hummer-config</artifactId>

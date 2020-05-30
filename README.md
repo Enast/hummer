@@ -11,22 +11,38 @@
     新目标：
         支持zookeeper的选举方案。
         支持基于netty实现的raft选举方案。
-[详情查看](./hummer-cluster/cluster-consul/readme.md). 
+[实现原理](./hummer-cluster/cluster-consul/readme.md)
 #### 统一任务调度（hummer-unifyTask）
     目前：
         支持定时任务周期3分钟以上的任务的统一管理和调度，解决避免重复执行，或者执行失败后无法重试执行的问题。
-        支持具有“前置任务”的任务的按需调度
+        支持具有“前置任务”的任务的按需调度.
         内置分布式任务调度锁，解决基于Spring定时任务框架实现的定时任务，在多实例部署场景会重复执行的问题。
-    新目标：
         支持后台管理系统：任务配置、重启、修改执行时间等功能。
-[详情查看](./hummer-unifytask/readme.md). 
+####任务后台
+
+##### 1.任务列表
+![任务列表](./docs/images/taskList.png)
+
+##### 2.任务状态
+![任务状态](./docs/images/taskStatus.png)
+
+##### 3.任务编辑
+![任务编辑](./docs/images/taskEdit.png)
+
+##### 4.日志列表
+![日志列表](./docs/images/logList.png)
+
+##### 5.日志状态
+![日志状态](./docs/images/logStatus.png)
+
+[实现原理](./hummer-unifytask/readme.md) 
 #### 统一配置（hummer-config）
     目前（代码整理中）：
         支持application.properties和spring自动配置的配置的热加载和更新
     新目标：
         支持对接第三方配置框架
         支持多样化的配置数据入口。
-[详情查看](./hummer-config/readme.md). 
+[实现原理](./hummer-config/readme.md). 
 
 #### 更多惊喜，期待您的加入。。。。
 

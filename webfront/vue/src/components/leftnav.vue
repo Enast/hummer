@@ -6,7 +6,7 @@
            unique-opened class="el-menu-vertical-demo" background-color="#00152a" text-color="#fff"
            active-text-color="#ffd04b">
     <div class="logobox">
-<!--      <img class="logoimg" src="../assets/img/logo.png" alt="">-->
+      <img class="logoimg" src="../assets/img/logo2.png" alt="">
     </div>
     <el-submenu v-for="menu in allmenu" :key="menu.menuid" :index="menu.menuname">
       <template slot="title">
