@@ -1,4 +1,5 @@
 # Hummer
+<div align=center>![logo](./docs/images/hummer-logo.png)</div>
 
 #### 介绍
 基于spring-boot的一组分布式套件，包括，主从选举、统一任务调度、统一配置变更等

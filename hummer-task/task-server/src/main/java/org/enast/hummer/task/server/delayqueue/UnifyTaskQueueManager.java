@@ -34,11 +34,11 @@ public class UnifyTaskQueueManager {
      * @param delayTime 延时时间
      * @param unit      时间单位
      */
-    public static void put(String server, String taskNo, long delayTime, TimeUnit unit) {
+    public static void put(String server, String taskNo,String name,String id, long delayTime, TimeUnit unit) {
         // 获取延时时间
         long timeout = TimeUnit.MILLISECONDS.convert(delayTime, unit);
         // 将任务封装成实现Delayed接口的消息体
-        UnifyTaskQueueElement delayOrder = new UnifyTaskQueueElement(server, taskNo, timeout);
+        UnifyTaskQueueElement delayOrder = new UnifyTaskQueueElement(server, taskNo, timeout,name,id);
         // 将消息体放到延时队列中
         try {
             delayQueue.add(delayOrder);

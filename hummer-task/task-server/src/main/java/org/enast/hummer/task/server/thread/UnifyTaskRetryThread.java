@@ -80,22 +80,30 @@ public class UnifyTaskRetryThread implements Runnable {
             // 所有重试次数已经用完
             UnifyTaskStatusType statusType = null;
             if (!isSuccess) {
-                statusType = UnifyTaskStatusType.fail;
+                statusType = UnifyTaskStatusType.severRetryFail;
             } else if (isSuccess) {
                 statusType = UnifyTaskStatusType.executing;
             }
             taskBiz.updateTaskStatusAndTryTimes(task.getServer(), task.getTaskNo(), statusType, retryTimes);
             // 记录重试日志
             logger.error("retry:retryTimesLimit - retryTimes:{},tryCount:{},{}", retryTimesLimit - retryTimes, tryCount, task.getTaskNo());
-            UnifyTaskLog log = new UnifyTaskLog();
-            log.setCreated(new Date());
-            log.setId(StringUtils.uuid32());
-            log.setServer(task.getServer());
-            log.setName(task.getTaskNo());
-            log.setTaskId(task.getId());
-            log.setStatus(statusType);
-            log.setTaskLog("重试任务:剩余重试次数:" + (retryTimesLimit - retryTimes) + ",当前重试:" + tryCount + "次");
-            unifyTaskLogBiz.add(log);
+            saveLog(statusType,tryCount);
         }
+    }
+
+    public void saveLog(UnifyTaskStatusType statusType,int tryCount){
+        UnifyTaskLog log = new UnifyTaskLog();
+        log.setCreated(new Date());
+        log.setId(StringUtils.uuid32());
+        log.setServer(task.getServer());
+        log.setName(task.getTaskNo());
+        log.setTaskId(task.getId());
+        log.setStatus(statusType);
+        if(tryCount==0){
+            log.setTaskLog("重试任务:剩余重试次数:" + (retryTimesLimit - retryTimes) + ",当前重试:" + tryCount + "次");
+        }else {
+            log.setTaskLog("重试任务:剩余重试次数:" + (retryTimesLimit - retryTimes) + ",当前重试:" + tryCount + "次");
+        }
+        unifyTaskLogBiz.add(log);
     }
 }

@@ -80,13 +80,15 @@ export default {
 .aside {
   width: 64px !important;
   height: 100%;
-  background-color: #334157;
+  /*background-color: #334157;*/
+  background-color: #00152a;
   margin: 0px;
 }
 .asideshow {
   width: 240px !important;
   height: 100%;
-  background-color: #334157;
+  /*background-color: #334157;*/
+  background-color: #00152a;
   margin: 0px;
 }
 .index-header,

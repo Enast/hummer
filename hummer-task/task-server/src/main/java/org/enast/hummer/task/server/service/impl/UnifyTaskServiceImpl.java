@@ -73,16 +73,17 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
         // 1.任务执行成功,设置任务状态为结束状态
         if (taskStatus.getSuccess()) {
             taskBiz.updateTaskStatusAndLastExcuteTime(taskStatus.getServer(), taskStatus.getTaskNo(), UnifyTaskStatusType.success, taskStatus.getTime());
-            UnifyTask task = taskBiz.findOne(taskStatus.getServer(), taskStatus.getTaskNo());
+            UnifyTask task = taskBiz.findOne(taskStatus.getTaskNo(), taskStatus.getServer());
             // 1.1记录成功日志
             UnifyTaskLog log = new UnifyTaskLog();
             log.setCreated(taskStatus.getTime());
             log.setId(StringUtils.uuid32());
             log.setServer(taskStatus.getServer());
-            log.setName(taskStatus.getTaskNo());
+            log.setName(task == null ? taskStatus.getTaskNo() :
+                    (task.getName() == null ? task.getName() : taskStatus.getTaskNo()));
             log.setTaskId(task == null ? "" : task.getId());
             log.setStatus(UnifyTaskStatusType.success);
-            log.setTaskLog("success");
+            log.setTaskLog("client execute task success");
             log.setDuration(taskStatus.getDuration());
             unifyTaskLogBiz.add(log);
         } else {
@@ -104,10 +105,11 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
                 log.setCreated(taskStatus.getTime());
                 log.setId(StringUtils.uuid32());
                 log.setServer(task.getServer());
-                log.setName(task.getTaskNo());
+                log.setName(task == null ? taskStatus.getTaskNo() :
+                        (task.getName() == null ? task.getName() : taskStatus.getTaskNo()));
                 log.setTaskId(task.getId());
                 log.setStatus(UnifyTaskStatusType.fail);
-                log.setTaskLog("fail");
+                log.setTaskLog("client execute task fail");
                 log.setDuration(taskStatus.getDuration());
                 unifyTaskLogBiz.add(log);
             }
@@ -125,7 +127,7 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
         logger.info("dispatchTask start");
         List<UnifyTask> taskList = taskBiz.findList();
         if (CollectionUtils.isEmpty(taskList)) {
-            logger.info("no tasks find");
+            logger.info("no tasks been found");
             return;
         }
         Long timeMills = System.currentTimeMillis();
@@ -190,7 +192,7 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
                 // 4.判断当前任务是否处于等待被调度状态中,并检测延时队列是否存在该任务(不存在,可能是主从节点有切换),不存在则再次放入延时队列中
                 if (task.getStatus() != null && task.getStatus() == UnifyTaskStatusType.waiting) {
                     if (!UnifyTaskQueueManager.taskSet.contains(task.getServer() + task.getTaskNo())) {
-                        taskList2Queue.add(new UnifyTaskQueueElement(task.getServer(), task.getTaskNo(), nextExecuteTime[0].getTime()));
+                        taskList2Queue.add(new UnifyTaskQueueElement(task.getServer(), task.getTaskNo(), nextExecuteTime[0].getTime(), task.getName(), task.getId()));
                     }
                 } else {
                     // 4.1由于前置任务延迟,导致了延迟
@@ -347,7 +349,7 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
         }
         if (putQueue) {
             // 2.放入队列
-            taskList2Queue.add(new UnifyTaskQueueElement(task.getServer(), task.getTaskNo(), nextExecuteTime.getTime()));
+            taskList2Queue.add(new UnifyTaskQueueElement(task.getServer(), task.getTaskNo(), nextExecuteTime.getTime(), task.getName(), task.getId()));
             task.setStatus(UnifyTaskStatusType.waiting);
             task.setNextExecuteTime(new Date(task.getNextExecuteTime().getTime() + task.getInterval()));
         }
@@ -356,18 +358,40 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
 
     @Override
     public void dispatchTask(UnifyTaskQueueElement element) {
-        TaskAjaxResult<Boolean> taskAjaxResult = taskDispatchService.dispatchTask(element.getServer(), element.getTaskNo());
-        if (!(taskAjaxResult != null && taskAjaxResult.getData())) {
-            updateTaskStatusAndTryTimes(element.getServer(), element.getTaskNo(), UnifyTaskStatusType.waiting, 0);
-            logger.info("dispatchTask fail and set status to waiting:{},{}", element.getServer(), element.getTaskNo());
-            // 2.调用失败,重新提交到,延时队列,延迟10秒,防止死循环调用
-            element.setExecuteTime(System.currentTimeMillis() + 10 * 1000);
-            if (!UnifyTaskQueueManager.taskSet.contains(element.getServer() + element.getTaskNo())) {
-                UnifyTaskQueueManager.put(element, TimeUnit.MILLISECONDS);
-                logger.info("out from delay queue, and exe fail:{},{},put into the queue", element.getServer(), element.getTaskNo());
-            } else {
-                logger.info("out from delay queue, and exe fail:{},{},had in the queue", element.getServer(), element.getTaskNo());
+        boolean saveLog = false;
+        String message = null;
+        try {
+            TaskAjaxResult<Boolean> taskAjaxResult = taskDispatchService.dispatchTask(element.getServer(), element.getTaskNo());
+            if (!(taskAjaxResult != null && taskAjaxResult.getData())) {
+                saveLog = true;
+                updateTaskStatusAndTryTimes(element.getServer(), element.getTaskNo(), UnifyTaskStatusType.waiting, 0);
+                logger.info("dispatchTask fail and set status to waiting:{},{}", element.getServer(), element.getTaskNo());
+                // 2.调用失败,重新提交到,延时队列,延迟10秒,防止死循环调用
+                element.setExecuteTime(System.currentTimeMillis() + 10 * 1000);
+                if (!UnifyTaskQueueManager.taskSet.contains(element.getServer() + element.getTaskNo())) {
+                    UnifyTaskQueueManager.put(element, TimeUnit.MILLISECONDS);
+                    logger.info("out from delay queue, and exe fail:{},{},put into the queue", element.getServer(), element.getTaskNo());
+                } else {
+                    logger.info("out from delay queue, and exe fail:{},{},had in the queue", element.getServer(), element.getTaskNo());
+                }
             }
+        } catch (Exception e) {
+            saveLog = true;
+            logger.error("", e);
+            message = e.getMessage();
+        }
+        if (saveLog) {
+            // 2.2记录失败日志
+            UnifyTaskLog log = new UnifyTaskLog();
+            log.setCreated(new Date());
+            log.setId(StringUtils.uuid32());
+            log.setServer(element.getServer());
+            log.setName(element.getName() == null ? element.getName() : element.getTaskNo());
+            log.setTaskId(element.getId());
+            log.setStatus(UnifyTaskStatusType.serverFastFail);
+            log.setTaskLog("server start the task fail.message:" + message);
+            log.setDuration(0L);
+            unifyTaskLogBiz.add(log);
         }
     }
 
@@ -565,18 +589,22 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
             throw new RuntimeException("task not exists");
         }
         task.setName(taskVO.getName());
-        if (StringUtils.isNotBlank(taskVO.getTaskCron()) && !taskVO.getTaskCron().equals(task.getTaskNo())) {
+        if (StringUtils.isNotBlank(taskVO.getTaskCron()) && !taskVO.getTaskCron().equals(task.getTaskCron())) {
+            task.setTaskCron(taskVO.getTaskCron());
             boolean success = resetTask((task.getLastExecuteTime() == null ? System.currentTimeMillis() :
                     task.getLastExecuteTime().getTime()), task);
             if (!success) {
                 logger.info("resetTask fail :{}", taskVO.getId());
                 throw new RuntimeException("resetTask cron express fail");
             }
-            task.setTaskCron(taskVO.getTaskCron());
         }
         // 重试次数上限
         if (taskVO.getRetryTimesLimit() != null) {
             task.setRetryTimesLimit(taskVO.getRetryTimesLimit());
+        }
+        // 前置任务
+        if (taskVO.getPreTaskId() != null) {
+            task.setPreTaskId(taskVO.getPreTaskId());
         }
         taskBiz.update(task);
         return "success";
@@ -599,7 +627,7 @@ public class UnifyTaskServiceImpl implements UnifyTaskService {
         if (task.getStatus() == UnifyTaskStatusType.waiting) {
             return "waiting";
         }
-        UnifyTaskQueueElement element = new UnifyTaskQueueElement(task.getServer(), task.getTaskNo(), System.currentTimeMillis());
+        UnifyTaskQueueElement element = new UnifyTaskQueueElement(task.getServer(), task.getTaskNo(), System.currentTimeMillis(), task.getName(), task.getId());
         task.setStatus(UnifyTaskStatusType.waiting);
         if (task.getInterval() != null) {
             task.setNextExecuteTime(new Date(System.currentTimeMillis() + task.getInterval()));

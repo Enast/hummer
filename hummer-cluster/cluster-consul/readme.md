@@ -42,7 +42,7 @@
  
  #### 依赖引用(hummer-cluster)
  
-  ```
+  ```xml
        <dependency>
            <groupId>org.enast.hummer</groupId>
            <artifactId>hummer-cluster</artifactId>
@@ -59,7 +59,7 @@
  
  #### 选举结果事件处理--使用举例(参考hummer-demo)
  
- ```
+ ```java
     cluster.eventlistener.ElectEventListener     
  ```
  

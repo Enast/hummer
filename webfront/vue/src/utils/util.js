@@ -3,6 +3,9 @@
  * @param {*} timestamp  时间戳
  */
 const timestampToTime = (timestamp) => {
+  if(timestamp == null){
+    return
+  }
     let date = new Date(timestamp) //时间戳为10位需*1000，时间戳为13位的话不需乘1000
     let Y = date.getFullYear() + '-'
     let M =
@@ -83,9 +86,17 @@ function taskStatus(row) {
     return "队列中";
   }else if(row.status == "executing"){
     return "执行中";
-  }
-  else if(row.status == "success"){
+  } else if(row.status == "success"){
     return "成功";
+  }
+  else if(row.status == "fail"){
+    return "客户端执行失败";
+  }
+  else if(row.status == "serverFastFail"){
+    return "服务端直接调用失败";
+  }
+  else if(row.status == "severRetryFail"){
+    return "服务端重试调用失败";
   }
 }
 /**

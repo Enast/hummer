@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 任务延时队列
+ *
  * @author zhujinming6
  * @create 2019-10-14 14:51
  * @update 2019-10-14 14:51
@@ -19,13 +20,17 @@ public class UnifyTaskQueueElement implements Delayed, Serializable {
 
     private String server;
     private String taskNo;
+    private String name;
+    private String id;
     private long executeTime;
 
 
-    public UnifyTaskQueueElement(String server, String taskNo, long executeTime) {
+    public UnifyTaskQueueElement(String server, String taskNo, long executeTime, String name,String id) {
         this.server = server;
         this.taskNo = taskNo;
         this.executeTime = executeTime;
+        this.name = name;
+        this.id = id;
     }
 
     public UnifyTaskQueueElement(String server, String taskNo) {
@@ -110,5 +115,21 @@ public class UnifyTaskQueueElement implements Delayed, Serializable {
 
     public void setExecuteTime(long executeTime) {
         this.executeTime = executeTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

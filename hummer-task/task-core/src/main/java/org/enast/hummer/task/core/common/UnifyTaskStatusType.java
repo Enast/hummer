@@ -8,6 +8,10 @@ package org.enast.hummer.task.core.common;
 public enum UnifyTaskStatusType {
 
     /**
+     *
+     */
+    all,
+    /**
      * 执行中
      */
     executing,
@@ -20,7 +24,15 @@ public enum UnifyTaskStatusType {
      */
     success,
     /**
-     * 执行失败
+     * 客户端执行失败
      */
-    fail;
+    fail,
+    /**
+     * 服务端直接调用失败
+     */
+    serverFastFail,
+    /**
+     * 服务端重试调用失败
+     */
+    severRetryFail,
 }

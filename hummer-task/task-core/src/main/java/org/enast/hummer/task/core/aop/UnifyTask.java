@@ -14,11 +14,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UnifyTask {
     /**
-     * 中文名称
+     * 名称
      *
      * @return
      */
-    String name() default "";
+    String name();
 
     /**
      * 任务标识,组件内部保持唯一

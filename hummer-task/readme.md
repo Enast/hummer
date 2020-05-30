@@ -59,7 +59,7 @@ hummer-task是为了解决分布式多实例情形下任务调度的一致性(�
  
  #### 依赖引用(参考hummer-task)
  
-  ```
+  ```xml
        <dependency>
            <groupId>org.enast.hummer</groupId>
            <artifactId>hummer-task</artifactId>

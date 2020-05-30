@@ -34,7 +34,7 @@ public class UnifyTaskLogServiceImpl implements UnifyTaskLogService {
     @Override
     public Pagination<TaskLogVO> pageList(TaskLogQueryVO queryVO) {
         Pagination<TaskLogVO> pagination = new Pagination<>();
-        Page<UnifyTaskLog> logPage = logBiz.pageList(queryVO.getSearch(),(queryVO.getPageNo() - 1) * queryVO.getPageSize(), queryVO.getPageSize());
+        Page<UnifyTaskLog> logPage = logBiz.pageList(queryVO.getSearch(),(queryVO.getPageNo() - 1) * queryVO.getPageSize(), queryVO.getPageSize(),queryVO.getStatus());
         pagination.setPageSize(queryVO.getPageSize());
         pagination.setPageNo(queryVO.getPageNo());
         pagination.setTotal(logPage.getTotalCount());

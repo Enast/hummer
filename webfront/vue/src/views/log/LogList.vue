@@ -6,20 +6,25 @@
     <!-- 面包屑导航 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">日志</el-breadcrumb-item>
-      <el-breadcrumb-item>列表</el-breadcrumb-item>
+      <el-breadcrumb-item>日志列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 搜索筛选 -->
     <el-form :inline="true" :model="formInline" class="user-search">
       <el-form-item label="搜索：">
         <el-input size="small" v-model="formInline.search" placeholder="输入任务名称/服务标识" @input="search"></el-input>
       </el-form-item>
+      <el-form-item>
+        <el-select size="small" v-model="formInline.status" placeholder="请选择" @input="search">
+          <el-option v-for="type in statusType" :label="type.key" :value="type.value" :key="type.value"></el-option>
+        </el-select>
+      </el-form-item>
 <!--      <el-form-item label="">-->
 <!--        <el-input size="small" v-model="formInline.server" placeholder="输入服务标识" @input="search"></el-input>-->
 <!--      </el-form-item>-->
-<!--      <el-form-item>-->
-<!--        <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button>-->
-<!--&lt;!&ndash;        <el-button size="small" type="primary" icon="el-icon-plus" @click="handleEdit()">添加</el-button>&ndash;&gt;-->
-<!--      </el-form-item>-->
+      <el-form-item>
+        <el-button size="small" icon="el-icon-refresh" @click="search" circle></el-button>
+<!--        <el-button size="small" type="primary" icon="el-icon-plus" @click="handleEdit()">添加</el-button>-->
+      </el-form-item>
     </el-form>
     <!--列表-->
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
@@ -31,16 +36,16 @@
       </el-table-column>
       <el-table-column sortable prop="taskId" label="任务Id" width="300">
       </el-table-column>
-      <el-table-column sortable prop="status" label="任务状态" width="150">
+      <el-table-column sortable prop="status" label="执行结果" width="150">
         <template slot-scope="scope">
-          <div>{{scope.row.status|taskStatus}}</div>
+          <div>{{scope.row|taskStatus}}</div>
         </template>
       </el-table-column>
       <el-table-column sortable prop="duration" label="耗时（ms）" width="150">
       </el-table-column>
-      <el-table-column sortable prop="taskLog" label="log" width="300">
+      <el-table-column sortable prop="taskLog" label="log" width="470">
       </el-table-column>
-      <el-table-column sortable prop="created" label="时间" width="300">
+      <el-table-column sortable prop="created" label="时间" width="140">
         <template slot-scope="scope">
           <div>{{scope.row.created|timestampToTime}}</div>
         </template>
@@ -69,12 +74,18 @@ export default {
       loading: false, //是显示加载
       editFormVisible: false, //控制编辑页面显示与隐藏
       title: '添加',
+      statusType: [
+        {key: '任务状态', value: 0},
+        {key: '成功', value: 3},
+        {key: '客户端执行失败', value: 4},
+        {key: '服务端直接调用失败', value: 5},
+        {key: '服务端重试调用失败', value: 6}
+      ],
       formInline: {
-        page: 1,
-        limit: 10,
-        varLable: '',
-        varName: '',
+        pageNo: 1,
+        pageSize: 10,
         search: '',
+        status:0,
         token: localStorage.getItem('logintoken')
       },
       listData: [], //用户数据
@@ -108,28 +119,28 @@ export default {
     // 获取公司列表
     getdata(parameter) {
       this.loading = true
-      // 模拟数据开始
-      let res = {
-        code: 0,
-        msg: null,
-        count: 5,
-        data: [
-          {
-            name: null,
-            server: null,
-            taskId: 1521062371000,
-            created: 1526700200000,
-            duration: 2,
-            status: 'success',
-            taskLog: '1'
-          }
-        ]
-      }
-      this.loading = false
-      this.listData = res.data
-      this.pageparm.currentPage = this.formInline.page
-      this.pageparm.pageSize = this.formInline.limit
-      this.pageparm.total = res.count
+      // // 模拟数据开始
+      // let res = {
+      //   code: 0,
+      //   msg: null,
+      //   count: 5,
+      //   data: [
+      //     {
+      //       name: null,
+      //       server: null,
+      //       taskId: 1521062371000,
+      //       created: 1526700200000,
+      //       duration: 2,
+      //       status: 'success',
+      //       taskLog: '1'
+      //     }
+      //   ]
+      // }
+      // this.loading = false
+      // this.listData = res.data
+      // this.pageparm.currentPage = this.formInline.pageNo
+      // this.pageparm.pageSize = this.formInline.pageSize
+      // this.pageparm.total = res.count
       /***
        * 调用接口，注释上面模拟数据 取消下面注释
        */
@@ -156,8 +167,8 @@ export default {
     },
     // 分页插件事件
     callFather(parm) {
-      this.formInline.page = parm.currentPage
-      this.formInline.limit = parm.pageSize
+      this.formInline.pageNo = parm.currentPage
+      this.formInline.pageSize = parm.pageSize
       this.getdata(this.formInline)
     },
     // 搜索事件

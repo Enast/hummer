@@ -6,6 +6,6 @@ package org.enast.hummer.demo.task.service;
  * @update 2019-10-11 12:30
  **/
 public interface TestService {
-    void task();
+    void hoursTask();
 //    Boolean test();
 }

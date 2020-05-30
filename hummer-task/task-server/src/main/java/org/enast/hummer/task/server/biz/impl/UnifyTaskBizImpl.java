@@ -118,7 +118,7 @@ public class UnifyTaskBizImpl extends DaoMapperImpl<UnifyTask> implements UnifyT
             }
             c.like(UnifyTask.Field.server, "%" + taskQueryVO.getServer() + "%");
         }
-        if (taskQueryVO.getStatus() != null) {
+        if (taskQueryVO.getStatus() != null && taskQueryVO.getStatus()!=UnifyTaskStatusType.all) {
             if (hasAnd) {
                 c.and();
             }

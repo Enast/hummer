@@ -10,6 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "ajv": "^6.12.2",
+    "ajv-keywords": "^3.4.1",
     "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.3.2",
     "http-proxy-middleware": "^0.18.0",

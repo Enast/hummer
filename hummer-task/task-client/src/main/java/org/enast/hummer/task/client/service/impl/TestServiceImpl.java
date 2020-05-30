@@ -29,7 +29,7 @@ public class TestServiceImpl implements TestService {
      * @return
      */
     @Override
-    @UnifyTask(taskNo = "test", cron = "0 0 */1 * * ?")
+    @UnifyTask(taskNo = "test", cron = "0 0 */1 * * ?",name = "")
 //    @Deprecated
     public void task() {
         // 处理逻辑
