@@ -41,7 +41,7 @@ public class ClientUnifyTaskServiceImpl implements ClientUnifyTaskService {
      */
     @Override
     public TaskAjaxResult<Boolean> reportTaskStatus(UnifyTaskStatus taskStatus) {
-        TaskAjaxResult<Boolean> result = rt.exchange("http://hummer-task/task/cloud/unifyTask/v1/taskStatus", HttpMethod.POST, HttpUtils.getHttpEntity(taskStatus), new ParameterizedTypeReference<TaskAjaxResult<Boolean>>() {
+        TaskAjaxResult<Boolean> result = rt.exchange("http://hummer-unifyTask/task/cloud/unifyTask/v1/taskStatus", HttpMethod.POST, HttpUtils.getHttpEntity(taskStatus), new ParameterizedTypeReference<TaskAjaxResult<Boolean>>() {
         }).getBody();
         return result;
     }
@@ -52,7 +52,7 @@ public class ClientUnifyTaskServiceImpl implements ClientUnifyTaskService {
      */
     @Override
     public TaskAjaxResult<Boolean> tasksRegister(List<UnifyTaskRegister> registers) {
-        TaskAjaxResult<Boolean> result = rt.exchange("http://hummer-task/task/cloud/unifyTask/v1/tasksRegister", HttpMethod.POST, HttpUtils.getHttpEntity(registers), new ParameterizedTypeReference<TaskAjaxResult<Boolean>>() {
+        TaskAjaxResult<Boolean> result = rt.exchange("http://hummer-unifyTask/task/cloud/unifyTask/v1/tasksRegister", HttpMethod.POST, HttpUtils.getHttpEntity(registers), new ParameterizedTypeReference<TaskAjaxResult<Boolean>>() {
         }).getBody();
         return result;
     }
@@ -67,7 +67,7 @@ public class ClientUnifyTaskServiceImpl implements ClientUnifyTaskService {
     @Override
     public TaskAjaxResult<Boolean> tasksUpdate(List<UnifyTaskUpdate> tasks) {
         setServer(tasks);
-        TaskAjaxResult<Boolean> result = rt.exchange("http://hummer-task/task/cloud/unifyTask/v1/tasksUpdate", HttpMethod.POST, HttpUtils.getHttpEntity(tasks), new ParameterizedTypeReference<TaskAjaxResult<Boolean>>() {
+        TaskAjaxResult<Boolean> result = rt.exchange("http://hummer-unifyTask/task/cloud/unifyTask/v1/tasksUpdate", HttpMethod.POST, HttpUtils.getHttpEntity(tasks), new ParameterizedTypeReference<TaskAjaxResult<Boolean>>() {
         }).getBody();
         return result;
     }
@@ -81,7 +81,7 @@ public class ClientUnifyTaskServiceImpl implements ClientUnifyTaskService {
     @Override
     public TaskAjaxResult<BasicTask> taskByNo(String taskNo) {
         String server = serverUtils.getContextPath();
-        TaskAjaxResult<BasicTask> result = rt.exchange("http://hummer-task/task/cloud/unifyTask/v1/findByNo?taskNo=" + taskNo + "&server=" + server, HttpMethod.GET, HttpUtils.getHttpEntity(null), new ParameterizedTypeReference<TaskAjaxResult<BasicTask>>() {
+        TaskAjaxResult<BasicTask> result = rt.exchange("http://hummer-unifyTask/task/cloud/unifyTask/v1/findByNo?taskNo=" + taskNo + "&server=" + server, HttpMethod.GET, HttpUtils.getHttpEntity(null), new ParameterizedTypeReference<TaskAjaxResult<BasicTask>>() {
         }).getBody();
         return result;
     }

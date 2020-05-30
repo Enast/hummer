@@ -1,4 +1,4 @@
-![logo](./docs/images/hummer-logo2.png)
+![logo](./docs/images/hummer-logo-2.png)
 =
 
 #### 介绍

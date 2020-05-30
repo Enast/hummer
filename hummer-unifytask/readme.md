@@ -1,7 +1,7 @@
 分布式任务统一调度
 =
 
-![avatar](../docs/images/unify-task-logo.png)
+![avatar](../docs/images/task-logo-1.png)
 ## 目录
 
  * <a href="#1">介绍</a>
