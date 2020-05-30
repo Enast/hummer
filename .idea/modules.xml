@@ -8,25 +8,16 @@
       <module fileurl="file://$PROJECT_DIR$/hummer-cluster/cluster-zookeeper/cluster-zookeeper.iml" filepath="$PROJECT_DIR$/hummer-cluster/cluster-zookeeper/cluster-zookeeper.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-cluster/demo-cluster.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-cluster/demo-cluster.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-config/demo-config.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-config/demo-config.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-dynamodel/demo-dynamodel.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-dynamodel/demo-dynamodel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-stream-flink/demo-stream-flink.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-stream-flink/demo-stream-flink.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-stream-redis/demo-stream-redis.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-stream-redis/demo-stream-redis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-task/demo-task.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-task/demo-task.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer.iml" filepath="$PROJECT_DIR$/hummer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-demo/demo-unifyTask/demo-unifyTask.iml" filepath="$PROJECT_DIR$/hummer-demo/demo-unifyTask/demo-unifyTask.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-cluster/hummer-cluster.iml" filepath="$PROJECT_DIR$/hummer-cluster/hummer-cluster.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-common/hummer-common.iml" filepath="$PROJECT_DIR$/hummer-common/hummer-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-config/hummer-config.iml" filepath="$PROJECT_DIR$/hummer-config/hummer-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/hummer-demo/hummer-demo.iml" filepath="$PROJECT_DIR$/hummer-demo/hummer-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-dynamodel/hummer-dynamodel.iml" filepath="$PROJECT_DIR$/hummer-dynamodel/hummer-dynamodel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-perfectmat/hummer-perfectmat.iml" filepath="$PROJECT_DIR$/hummer-perfectmat/hummer-perfectmat.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-stream/hummer-stream.iml" filepath="$PROJECT_DIR$/hummer-stream/hummer-stream.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-task/hummer-task.iml" filepath="$PROJECT_DIR$/hummer-task/hummer-task.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-core/stream-core.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-core/stream-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-flink/stream-flink.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-flink/stream-flink.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-stream/stream-redis/stream-redis.iml" filepath="$PROJECT_DIR$/hummer-stream/stream-redis/stream-redis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-task/task-client/task-client.iml" filepath="$PROJECT_DIR$/hummer-task/task-client/task-client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-task/task-core/task-core.iml" filepath="$PROJECT_DIR$/hummer-task/task-core/task-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hummer-task/task-server/task-server.iml" filepath="$PROJECT_DIR$/hummer-task/task-server/task-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-parent.iml" filepath="$PROJECT_DIR$/hummer-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-unifytask/hummer-unifyTask.iml" filepath="$PROJECT_DIR$/hummer-unifytask/hummer-unifyTask.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-unifytask/unifyTask-client/unifyTask-client.iml" filepath="$PROJECT_DIR$/hummer-unifytask/unifyTask-client/unifyTask-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-unifytask/unifyTask-core/unifyTask-core.iml" filepath="$PROJECT_DIR$/hummer-unifytask/unifyTask-core/unifyTask-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hummer-unifytask/unifyTask-server/unifyTask-server.iml" filepath="$PROJECT_DIR$/hummer-unifytask/unifyTask-server/unifyTask-server.iml" />
     </modules>
   </component>
 </project>

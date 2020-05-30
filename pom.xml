@@ -35,7 +35,7 @@
         <module>hummer-common</module>
         <module>hummer-cluster</module>
         <module>hummer-config</module>
-        <module>hummer-task</module>
+        <module>hummer-unifyTask</module>
         <module>hummer-demo</module>
     </modules>
 

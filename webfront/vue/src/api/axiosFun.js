@@ -29,7 +29,7 @@ const loginreq = (method, url, params) => {
 const req = (method, url, params) => {
     return axios({
         method: method,
-        url: url,
+        url: "/task"+url,
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
             token: localStorage.getItem('logintoken')
